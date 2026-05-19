@@ -325,6 +325,71 @@
     .tc-text  { color: #94a3b8; font-size: 12.5px; line-height: 1.65; margin-bottom: 12px; }
     .tc-lawyer { color: #3b82f6; font-size: 11px; font-weight: 500; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 10px; }
 
+    /* ── Cómo funciona — section bg ── */
+    .cf-section { background: #04070f; }
+    body.light .cf-section { background: #f0f4ff; }
+    body.light .cf-sticky { background: transparent; }
+
+    /* Apple visual card system */
+    .av-card {
+      height: 100%;
+      background: rgba(13,20,38,0.85);
+      border: 1px solid rgba(59,130,246,0.2);
+      border-radius: 20px;
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 12px;
+    }
+    body.light .av-card {
+      background: #ffffff;
+      border-color: rgba(59,130,246,0.2);
+      box-shadow: 0 4px 24px rgba(59,130,246,0.08);
+    }
+    .av-card-green { border-color: rgba(34,197,94,0.25) !important; }
+    body.light .av-card-green { background: #f0fdf4 !important; }
+
+    .av-label { color: #64748b; font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 4px; }
+    body.light .av-label { color: #6b7280; }
+
+    .av-row { display: flex; align-items: center; gap: 10px; padding: 10px 14px; border-radius: 10px; }
+    .av-row-blue { background: rgba(59,130,246,0.08); }
+    body.light .av-row-blue { background: rgba(59,130,246,0.07); }
+    .av-row-muted { background: rgba(255,255,255,0.03); }
+    body.light .av-row-muted { background: rgba(0,0,0,0.03); }
+    .av-row-green { background: rgba(34,197,94,0.07); border: 1px solid rgba(34,197,94,0.15); }
+
+    .av-table-row { display: flex; justify-content: space-between; align-items: center; padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    body.light .av-table-row { border-bottom-color: rgba(0,0,0,0.07); }
+    .av-last-row { border-bottom: none !important; }
+
+    .av-bullet { display: flex; align-items: center; gap: 10px; }
+    .av-dot { width: 6px; height: 6px; border-radius: 50%; background: #3b82f6; flex-shrink: 0; }
+    .av-badge-center { text-align: center; padding: 10px; border-radius: 10px; background: rgba(59,130,246,0.08); }
+    body.light .av-badge-center { background: rgba(59,130,246,0.07); }
+
+    .av-check-circle { width: 64px; height: 64px; border-radius: 50%; background: rgba(34,197,94,0.15); border: 2px solid rgba(34,197,94,0.4); display: flex; align-items: center; justify-content: center; }
+    .av-big-green { color: #4ade80; font-size: 32px; font-weight: 800; line-height: 1; }
+    body.light .av-big-green { color: #16a34a; }
+
+    /* Text tokens */
+    .av-text-blue   { color: #93c5fd; font-size: 13px; }
+    body.light .av-text-blue { color: #1d4ed8; }
+    .av-text-muted  { color: #64748b; font-size: 13px; }
+    body.light .av-text-muted { color: #4b5563; }
+    .av-text-body   { color: #cbd5e1; font-size: 13px; }
+    body.light .av-text-body { color: #374151; }
+    .av-text-strong { color: #fff; font-weight: 700; font-size: 13px; }
+    body.light .av-text-strong { color: #0d1426; }
+    .av-text-green  { color: #4ade80; font-weight: 700; font-size: 13px; }
+    body.light .av-text-green { color: #16a34a; }
+
+    /* Apple step text tokens */
+    body.light .apple-step h3 { color: #0d1426 !important; }
+    body.light .apple-step p  { color: #374151 !important; }
+    body.light .apple-step p[style*="color:#60a5fa"] { color: #1d4ed8 !important; }
+
     /* Apple steps */
     .step-dot-nav {
       width: 6px; height: 6px; border-radius: 50%;
@@ -1011,7 +1076,7 @@
        CÓMO FUNCIONA — Apple scroll
   ═══════════════════════════════════════════════ -->
   <div class="divider"></div>
-  <section id="como-funciona" style="background:#04070f;">
+  <section id="como-funciona" class="cf-section">
 
     <!-- Header -->
     <div class="max-w-3xl mx-auto px-6 pt-24 pb-16 text-center reveal">
@@ -1025,7 +1090,7 @@
     <!-- Scroll cinematic — desktop only -->
     <div id="steps-scroll" class="hidden md:block relative" style="height:400vh;">
       <!-- Sticky container -->
-      <div id="steps-sticky" style="position:sticky;top:0;height:100vh;display:flex;align-items:center;overflow:hidden;">
+      <div id="steps-sticky" class="cf-sticky" style="position:sticky;top:0;height:100vh;display:flex;align-items:center;overflow:hidden;">
         <div class="max-w-5xl mx-auto px-6 w-full">
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;">
 
@@ -1089,94 +1154,65 @@
 
               <!-- Visual 1 -->
               <div class="apple-visual" id="visual-1" style="position:absolute;inset:0;opacity:0;transform:scale(0.96);">
-                <div style="height:100%;background:rgba(13,20,38,0.8);border:1px solid rgba(59,130,246,0.2);border-radius:20px;padding:28px;display:flex;flex-direction:column;justify-content:center;gap:16px;">
-                  <div style="display:flex;align-items:center;gap:12px;padding:14px;background:rgba(59,130,246,0.08);border-radius:12px;">
+                <div class="av-card">
+                  <div class="av-row av-row-blue">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .84h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-                    <span style="color:#93c5fd;font-size:13px;">Llamada o formulario · &lt; 5 min</span>
+                    <span class="av-text-blue">Llamada o formulario · &lt; 5 min</span>
                   </div>
-                  <div style="display:flex;align-items:center;gap:12px;padding:14px;background:rgba(255,255,255,0.03);border-radius:12px;">
+                  <div class="av-row av-row-muted">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#475569" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                    <span style="color:#475569;font-size:13px;">Respuesta en menos de 24h</span>
+                    <span class="av-text-muted">Respuesta en menos de 24h</span>
                   </div>
-                  <div style="text-align:center;padding:10px;border-radius:10px;background:rgba(59,130,246,0.06);">
-                    <span style="color:#60a5fa;font-size:12px;font-weight:600;">100% gratuito y sin compromiso</span>
+                  <div class="av-badge-center">
+                    <span class="av-text-blue" style="font-size:12px;font-weight:600;">100% gratuito y sin compromiso</span>
                   </div>
                 </div>
               </div>
 
               <!-- Visual 2 -->
               <div class="apple-visual" id="visual-2" style="position:absolute;inset:0;opacity:0;transform:scale(0.96);">
-                <div style="height:100%;background:rgba(13,20,38,0.8);border:1px solid rgba(59,130,246,0.2);border-radius:20px;padding:28px;display:flex;flex-direction:column;justify-content:center;gap:12px;">
-                  <p style="color:#64748b;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px;">Lo que analizamos</p>
-                  <div style="display:flex;align-items:center;gap:10px;padding:10px 14px;background:rgba(34,197,94,0.07);border:1px solid rgba(34,197,94,0.15);border-radius:10px;">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                    <span style="color:#cbd5e1;font-size:13px;">Importe total y número de acreedores</span>
-                  </div>
-                  <div style="display:flex;align-items:center;gap:10px;padding:10px 14px;background:rgba(34,197,94,0.07);border:1px solid rgba(34,197,94,0.15);border-radius:10px;">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                    <span style="color:#cbd5e1;font-size:13px;">Ingresos actuales y patrimonio</span>
-                  </div>
-                  <div style="display:flex;align-items:center;gap:10px;padding:10px 14px;background:rgba(34,197,94,0.07);border:1px solid rgba(34,197,94,0.15);border-radius:10px;">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                    <span style="color:#cbd5e1;font-size:13px;">Buena fe y viabilidad legal</span>
-                  </div>
-                  <div style="display:flex;align-items:center;gap:10px;padding:10px 14px;background:rgba(34,197,94,0.07);border:1px solid rgba(34,197,94,0.15);border-radius:10px;">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                    <span style="color:#cbd5e1;font-size:13px;">Deudas públicas (Hacienda / SS)</span>
-                  </div>
+                <div class="av-card">
+                  <p class="av-label">Lo que analizamos</p>
+                  <div class="av-row av-row-green"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span class="av-text-body">Importe total y número de acreedores</span></div>
+                  <div class="av-row av-row-green"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span class="av-text-body">Ingresos actuales y patrimonio</span></div>
+                  <div class="av-row av-row-green"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span class="av-text-body">Buena fe y viabilidad legal</span></div>
+                  <div class="av-row av-row-green"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span class="av-text-body">Deudas públicas (Hacienda / SS)</span></div>
                 </div>
               </div>
 
               <!-- Visual 3 -->
               <div class="apple-visual" id="visual-3" style="position:absolute;inset:0;opacity:0;transform:scale(0.96);">
-                <div style="height:100%;background:rgba(13,20,38,0.8);border:1px solid rgba(59,130,246,0.2);border-radius:20px;padding:28px;display:flex;flex-direction:column;justify-content:center;gap:0;">
-                  <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.06);">
-                    <span style="color:#64748b;font-size:13px;">Honorarios totales</span>
-                    <span style="color:#fff;font-weight:700;font-size:13px;">Precio fijo ✓</span>
-                  </div>
-                  <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.06);">
-                    <span style="color:#64748b;font-size:13px;">Costes ocultos</span>
-                    <span style="color:#4ade80;font-weight:700;font-size:13px;">€0</span>
-                  </div>
-                  <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.06);">
-                    <span style="color:#64748b;font-size:13px;">Revisiones de precio</span>
-                    <span style="color:#4ade80;font-weight:700;font-size:13px;">Nunca</span>
-                  </div>
-                  <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 0;">
-                    <span style="color:#64748b;font-size:13px;">Si no ganamos</span>
-                    <span style="color:#4ade80;font-weight:700;font-size:13px;">No cobramos</span>
-                  </div>
+                <div class="av-card" style="gap:0;">
+                  <div class="av-table-row"><span class="av-text-muted">Honorarios totales</span><span class="av-text-strong">Precio fijo ✓</span></div>
+                  <div class="av-table-row"><span class="av-text-muted">Costes ocultos</span><span class="av-text-green">€0</span></div>
+                  <div class="av-table-row"><span class="av-text-muted">Revisiones de precio</span><span class="av-text-green">Nunca</span></div>
+                  <div class="av-table-row av-last-row"><span class="av-text-muted">Si no ganamos</span><span class="av-text-green">No cobramos</span></div>
                 </div>
               </div>
 
               <!-- Visual 4 -->
               <div class="apple-visual" id="visual-4" style="position:absolute;inset:0;opacity:0;transform:scale(0.96);">
-                <div style="height:100%;background:rgba(13,20,38,0.8);border:1px solid rgba(59,130,246,0.2);border-radius:20px;padding:28px;display:flex;flex-direction:column;justify-content:center;gap:12px;">
-                  <p style="color:#64748b;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px;">Nosotros nos encargamos de</p>
-                  <div style="display:flex;align-items:center;gap:10px;"><div style="width:6px;height:6px;border-radius:50%;background:#3b82f6;flex-shrink:0;"></div><span style="color:#cbd5e1;font-size:13px;">Preparar y presentar toda la documentación</span></div>
-                  <div style="display:flex;align-items:center;gap:10px;"><div style="width:6px;height:6px;border-radius:50%;background:#3b82f6;flex-shrink:0;"></div><span style="color:#cbd5e1;font-size:13px;">Concurso de acreedores ante el Juzgado</span></div>
-                  <div style="display:flex;align-items:center;gap:10px;"><div style="width:6px;height:6px;border-radius:50%;background:#3b82f6;flex-shrink:0;"></div><span style="color:#cbd5e1;font-size:13px;">Negociación con bancos, Hacienda y ASNEF</span></div>
-                  <div style="display:flex;align-items:center;gap:10px;"><div style="width:6px;height:6px;border-radius:50%;background:#3b82f6;flex-shrink:0;"></div><span style="color:#cbd5e1;font-size:13px;">Seguimiento mensual y comunicación continua</span></div>
-                  <div style="margin-top:8px;padding:10px 14px;background:rgba(59,130,246,0.08);border-radius:10px;text-align:center;">
-                    <span style="color:#93c5fd;font-size:12px;font-weight:600;">Tú solo firmas cuando toca</span>
-                  </div>
+                <div class="av-card">
+                  <p class="av-label">Nosotros nos encargamos de</p>
+                  <div class="av-bullet"><div class="av-dot"></div><span class="av-text-body">Preparar y presentar toda la documentación</span></div>
+                  <div class="av-bullet"><div class="av-dot"></div><span class="av-text-body">Concurso de acreedores ante el Juzgado</span></div>
+                  <div class="av-bullet"><div class="av-dot"></div><span class="av-text-body">Negociación con bancos, Hacienda y ASNEF</span></div>
+                  <div class="av-bullet"><div class="av-dot"></div><span class="av-text-body">Seguimiento mensual y comunicación continua</span></div>
+                  <div class="av-badge-center" style="margin-top:8px;"><span class="av-text-blue" style="font-size:12px;font-weight:600;">Tú solo firmas cuando toca</span></div>
                 </div>
               </div>
 
               <!-- Visual 5 -->
               <div class="apple-visual" id="visual-5" style="position:absolute;inset:0;opacity:0;transform:scale(0.96);">
-                <div style="height:100%;background:rgba(5,20,10,0.9);border:1px solid rgba(34,197,94,0.25);border-radius:20px;padding:28px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;gap:16px;">
-                  <div style="width:64px;height:64px;border-radius:50%;background:rgba(34,197,94,0.15);border:2px solid rgba(34,197,94,0.4);display:flex;align-items:center;justify-content:center;">
+                <div class="av-card av-card-green" style="align-items:center;text-align:center;">
+                  <div class="av-check-circle">
                     <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
                   </div>
-                  <div>
-                    <p style="color:#4ade80;font-size:32px;font-weight:800;line-height:1;">100%</p>
-                    <p style="color:#86efac;font-size:14px;font-weight:600;">deuda cancelada</p>
-                  </div>
+                  <div><p class="av-big-green">100%</p><p class="av-text-green" style="font-size:14px;font-weight:600;">deuda cancelada</p></div>
                   <div style="width:100%;display:flex;flex-direction:column;gap:8px;">
-                    <div style="display:flex;align-items:center;gap:8px;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span style="color:#94a3b8;font-size:12px;">ASNEF limpio automáticamente</span></div>
-                    <div style="display:flex;align-items:center;gap:8px;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span style="color:#94a3b8;font-size:12px;">Sin embargos ni llamadas</span></div>
-                    <div style="display:flex;align-items:center;gap:8px;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span style="color:#94a3b8;font-size:12px;">Media: 14 meses hasta sentencia</span></div>
+                    <div class="av-bullet"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span class="av-text-muted" style="font-size:12px;">ASNEF limpio automáticamente</span></div>
+                    <div class="av-bullet"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span class="av-text-muted" style="font-size:12px;">Sin embargos ni llamadas</span></div>
+                    <div class="av-bullet"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span class="av-text-muted" style="font-size:12px;">Media: 14 meses hasta sentencia</span></div>
                   </div>
                 </div>
               </div>
