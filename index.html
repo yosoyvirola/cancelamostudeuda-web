@@ -253,6 +253,19 @@
     .float-a { animation: floatA 4.5s ease-in-out infinite; }
     .float-b { animation: floatB 3.8s ease-in-out infinite 0.8s; }
 
+    /* Apple steps */
+    .step-dot-nav {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: rgba(255,255,255,0.15);
+      transition: background .3s, width .3s;
+      cursor: default;
+    }
+    .step-dot-nav.active {
+      background: #3b82f6;
+      width: 20px;
+      border-radius: 3px;
+    }
+
     /* FAQ */
     .faq-body { transition: none; }
     .faq-icon.open { transform: rotate(180deg); }
@@ -808,160 +821,223 @@
   <div class="divider"></div>
 
   <!-- ═══════════════════════════════════════════════
-       CÓMO FUNCIONA
+       CÓMO FUNCIONA — Apple scroll
   ═══════════════════════════════════════════════ -->
   <div class="divider"></div>
-  <section class="py-24 relative" id="como-funciona">
-    <div class="orb w-[500px] h-[500px] bg-blue-600/6 top-0 right-0 translate-x-1/3"></div>
-    <div class="max-w-5xl mx-auto px-6 relative z-10">
-      <div class="text-center mb-16 reveal">
-        <div class="pill mb-4">El procedimiento</div>
-        <h2 class="text-3xl sm:text-4xl font-800 text-white tracking-tight mb-4">
-          Así es exactamente<br /><span class="text-blue-gradient">cómo trabajamos tu caso</span>
-        </h2>
-        <p class="text-slate-400 text-base max-w-xl mx-auto">Sin letra pequeña, sin sorpresas. Esto es lo que ocurre desde que nos contactas hasta que tu deuda desaparece.</p>
-      </div>
+  <section id="como-funciona" style="background:#04070f;">
 
-      <div class="relative">
-        <!-- Vertical line -->
-        <div class="hidden md:block absolute left-1/2 top-0 bottom-0 w-px -translate-x-1/2" style="background:linear-gradient(to bottom,transparent,rgba(59,130,246,0.3) 10%,rgba(59,130,246,0.3) 90%,transparent)"></div>
+    <!-- Header -->
+    <div class="max-w-3xl mx-auto px-6 pt-24 pb-16 text-center reveal">
+      <div class="pill mb-4">El procedimiento</div>
+      <h2 class="text-3xl sm:text-4xl font-800 text-white tracking-tight mb-4">
+        Así es exactamente<br /><span class="text-blue-gradient">cómo trabajamos tu caso</span>
+      </h2>
+      <p class="text-slate-400 text-base max-w-xl mx-auto">Sin letra pequeña, sin sorpresas. De la primera llamada a la sentencia.</p>
+    </div>
 
-        <div class="space-y-10">
+    <!-- Scroll cinematic — desktop only -->
+    <div id="steps-scroll" class="hidden md:block relative" style="height:400vh;">
+      <!-- Sticky container -->
+      <div id="steps-sticky" style="position:sticky;top:0;height:100vh;display:flex;align-items:center;overflow:hidden;">
+        <div class="max-w-5xl mx-auto px-6 w-full">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;">
 
-          <!-- Step 1 -->
-          <div class="reveal grid md:grid-cols-2 gap-8 items-center">
-            <div class="md:text-right md:pr-12">
-              <div class="inline-flex items-center gap-2 mb-3">
-                <span style="background:rgba(59,130,246,0.15);border:1px solid rgba(59,130,246,0.3);border-radius:20px;padding:3px 12px;color:#60a5fa;font-size:12px;font-weight:700;">PASO 1</span>
-              </div>
-              <h3 class="text-white font-700 text-xl mb-2">Nos cuentas tu situación — gratis</h3>
-              <p class="text-slate-400 text-sm leading-relaxed">Rellenas el formulario o nos llamas. En menos de 24 horas un abogado especialista revisa tu caso sin cobrarte nada. Nos dices cuánto debes y a quién. Nosotros nos encargamos del resto.</p>
-            </div>
-            <div class="md:pl-12 relative">
-              <div class="hidden md:flex absolute -left-4 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-blue-600 items-center justify-center z-10 text-white font-800 text-sm">1</div>
-              <div class="card-border rounded-xl bg-ink-800 p-5">
-                <div class="flex items-center gap-3 mb-3">
-                  <div class="w-8 h-8 rounded-lg bg-blue-600/20 flex items-center justify-center flex-shrink-0">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .84h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-                  </div>
-                  <p class="text-white font-600 text-sm">Sin compromiso. Sin coste.</p>
+            <!-- LEFT: step cards stacked, animated -->
+            <div style="position:relative;height:320px;">
+
+              <!-- Step 1 -->
+              <div class="apple-step" id="step-1" style="position:absolute;inset:0;opacity:0;transform:translateY(40px);">
+                <div style="margin-bottom:16px;">
+                  <span style="background:rgba(59,130,246,0.15);border:1px solid rgba(59,130,246,0.3);border-radius:20px;padding:4px 14px;color:#60a5fa;font-size:11px;font-weight:700;letter-spacing:.08em;">PASO 1 DE 5</span>
                 </div>
-                <p class="text-slate-400 text-xs leading-relaxed">Tiempo estimado: <strong class="text-white">menos de 5 minutos</strong> para contarnos tu situación. Respuesta en 24h.</p>
+                <h3 style="color:#fff;font-size:28px;font-weight:800;line-height:1.15;margin-bottom:12px;">Nos cuentas<br/>tu situación</h3>
+                <p style="color:#94a3b8;font-size:15px;line-height:1.7;">Rellenas el formulario o nos llamas. En menos de 24 horas un abogado especialista revisa tu caso. Nos dices cuánto debes y a quién. Nosotros nos encargamos del resto.</p>
+                <p style="color:#60a5fa;font-size:13px;margin-top:16px;font-weight:600;">Sin compromiso · Sin coste</p>
               </div>
-            </div>
-          </div>
 
-          <!-- Step 2 -->
-          <div class="reveal grid md:grid-cols-2 gap-8 items-center">
-            <div class="md:order-2 md:text-left md:pl-12">
-              <div class="inline-flex items-center gap-2 mb-3">
-                <span style="background:rgba(59,130,246,0.15);border:1px solid rgba(59,130,246,0.3);border-radius:20px;padding:3px 12px;color:#60a5fa;font-size:12px;font-weight:700;">PASO 2</span>
+              <!-- Step 2 -->
+              <div class="apple-step" id="step-2" style="position:absolute;inset:0;opacity:0;transform:translateY(40px);">
+                <div style="margin-bottom:16px;">
+                  <span style="background:rgba(59,130,246,0.15);border:1px solid rgba(59,130,246,0.3);border-radius:20px;padding:4px 14px;color:#60a5fa;font-size:11px;font-weight:700;letter-spacing:.08em;">PASO 2 DE 5</span>
+                </div>
+                <h3 style="color:#fff;font-size:28px;font-weight:800;line-height:1.15;margin-bottom:12px;">Analizamos<br/>la viabilidad</h3>
+                <p style="color:#94a3b8;font-size:15px;line-height:1.7;">Revisamos deudas, acreedores y situación económica. Si vemos que podemos conseguirte el 100% de cancelación, te lo decimos. Si no es viable, también te lo decimos — y no te cobramos nada.</p>
+                <p style="color:#60a5fa;font-size:13px;margin-top:16px;font-weight:600;">Honestidad antes que honorarios</p>
               </div>
-              <h3 class="text-white font-700 text-xl mb-2">Analizamos si tu caso es viable — con honestidad</h3>
-              <p class="text-slate-400 text-sm leading-relaxed">Revisamos deudas, acreedores y situación económica. Si vemos que podemos conseguirte el 100% de cancelación, te lo decimos y te proponemos cómo seguir. Si no es viable, también te lo decimos — y no te cobramos nada.</p>
+
+              <!-- Step 3 -->
+              <div class="apple-step" id="step-3" style="position:absolute;inset:0;opacity:0;transform:translateY(40px);">
+                <div style="margin-bottom:16px;">
+                  <span style="background:rgba(59,130,246,0.15);border:1px solid rgba(59,130,246,0.3);border-radius:20px;padding:4px 14px;color:#60a5fa;font-size:11px;font-weight:700;letter-spacing:.08em;">PASO 3 DE 5</span>
+                </div>
+                <h3 style="color:#fff;font-size:28px;font-weight:800;line-height:1.15;margin-bottom:12px;">Precio cerrado<br/>desde el día 1</h3>
+                <p style="color:#94a3b8;font-size:15px;line-height:1.7;">Si aceptamos tu caso, fijamos un precio total inamovible. Sin porcentajes sobre la deuda, sin costes ocultos, sin revisiones al avanzar. El primer pago solo cuando confirmamos que ganamos.</p>
+                <p style="color:#60a5fa;font-size:13px;margin-top:16px;font-weight:600;">Lo que firmamos es lo que pagas</p>
+              </div>
+
+              <!-- Step 4 -->
+              <div class="apple-step" id="step-4" style="position:absolute;inset:0;opacity:0;transform:translateY(40px);">
+                <div style="margin-bottom:16px;">
+                  <span style="background:rgba(59,130,246,0.15);border:1px solid rgba(59,130,246,0.3);border-radius:20px;padding:4px 14px;color:#60a5fa;font-size:11px;font-weight:700;letter-spacing:.08em;">PASO 4 DE 5</span>
+                </div>
+                <h3 style="color:#fff;font-size:28px;font-weight:800;line-height:1.15;margin-bottom:12px;">Gestionamos<br/>todo el proceso</h3>
+                <p style="color:#94a3b8;font-size:15px;line-height:1.7;">Preparamos la documentación, presentamos el concurso ante el juzgado y negociamos con cada acreedor. Tú no tienes que hablar con ningún banco. Nosotros somos tu escudo durante todo el procedimiento.</p>
+                <p style="color:#60a5fa;font-size:13px;margin-top:16px;font-weight:600;">Tú solo firmas cuando toca</p>
+              </div>
+
+              <!-- Step 5 -->
+              <div class="apple-step" id="step-5" style="position:absolute;inset:0;opacity:0;transform:translateY(40px);">
+                <div style="margin-bottom:16px;">
+                  <span style="background:rgba(34,197,94,0.15);border:1px solid rgba(34,197,94,0.3);border-radius:20px;padding:4px 14px;color:#4ade80;font-size:11px;font-weight:700;letter-spacing:.08em;">RESULTADO FINAL</span>
+                </div>
+                <h3 style="color:#fff;font-size:28px;font-weight:800;line-height:1.15;margin-bottom:12px;">Deuda cancelada<br/>al 100%</h3>
+                <p style="color:#94a3b8;font-size:15px;line-height:1.7;">El juez dicta la Exoneración del Pasivo Insatisfecho. A partir de ese momento no debes nada a nadie. ASNEF limpio, sin embargos, sin llamadas. Puedes empezar de cero.</p>
+                <p style="color:#4ade80;font-size:13px;margin-top:16px;font-weight:600;">Media: 14 meses hasta sentencia</p>
+              </div>
+
             </div>
-            <div class="md:order-1 md:pr-12 relative">
-              <div class="hidden md:flex absolute -right-4 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-blue-600 items-center justify-center z-10 text-white font-800 text-sm">2</div>
-              <div class="card-border rounded-xl bg-ink-800 p-5">
-                <div class="flex items-start gap-3 mb-3">
-                  <div class="w-8 h-8 rounded-lg bg-green-600/20 flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+
+            <!-- RIGHT: visual card that morphs -->
+            <div style="position:relative;height:320px;">
+
+              <!-- Visual 1 -->
+              <div class="apple-visual" id="visual-1" style="position:absolute;inset:0;opacity:0;transform:scale(0.96);">
+                <div style="height:100%;background:rgba(13,20,38,0.8);border:1px solid rgba(59,130,246,0.2);border-radius:20px;padding:28px;display:flex;flex-direction:column;justify-content:center;gap:16px;">
+                  <div style="display:flex;align-items:center;gap:12px;padding:14px;background:rgba(59,130,246,0.08);border-radius:12px;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .84h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+                    <span style="color:#93c5fd;font-size:13px;">Llamada o formulario · &lt; 5 min</span>
+                  </div>
+                  <div style="display:flex;align-items:center;gap:12px;padding:14px;background:rgba(255,255,255,0.03);border-radius:12px;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#475569" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    <span style="color:#475569;font-size:13px;">Respuesta en menos de 24h</span>
+                  </div>
+                  <div style="text-align:center;padding:10px;border-radius:10px;background:rgba(59,130,246,0.06);">
+                    <span style="color:#60a5fa;font-size:12px;font-weight:600;">100% gratuito y sin compromiso</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Visual 2 -->
+              <div class="apple-visual" id="visual-2" style="position:absolute;inset:0;opacity:0;transform:scale(0.96);">
+                <div style="height:100%;background:rgba(13,20,38,0.8);border:1px solid rgba(59,130,246,0.2);border-radius:20px;padding:28px;display:flex;flex-direction:column;justify-content:center;gap:12px;">
+                  <p style="color:#64748b;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px;">Lo que analizamos</p>
+                  <div style="display:flex;align-items:center;gap:10px;padding:10px 14px;background:rgba(34,197,94,0.07);border:1px solid rgba(34,197,94,0.15);border-radius:10px;">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                    <span style="color:#cbd5e1;font-size:13px;">Importe total y número de acreedores</span>
+                  </div>
+                  <div style="display:flex;align-items:center;gap:10px;padding:10px 14px;background:rgba(34,197,94,0.07);border:1px solid rgba(34,197,94,0.15);border-radius:10px;">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                    <span style="color:#cbd5e1;font-size:13px;">Ingresos actuales y patrimonio</span>
+                  </div>
+                  <div style="display:flex;align-items:center;gap:10px;padding:10px 14px;background:rgba(34,197,94,0.07);border:1px solid rgba(34,197,94,0.15);border-radius:10px;">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                    <span style="color:#cbd5e1;font-size:13px;">Buena fe y viabilidad legal</span>
+                  </div>
+                  <div style="display:flex;align-items:center;gap:10px;padding:10px 14px;background:rgba(34,197,94,0.07);border:1px solid rgba(34,197,94,0.15);border-radius:10px;">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                    <span style="color:#cbd5e1;font-size:13px;">Deudas públicas (Hacienda / SS)</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Visual 3 -->
+              <div class="apple-visual" id="visual-3" style="position:absolute;inset:0;opacity:0;transform:scale(0.96);">
+                <div style="height:100%;background:rgba(13,20,38,0.8);border:1px solid rgba(59,130,246,0.2);border-radius:20px;padding:28px;display:flex;flex-direction:column;justify-content:center;gap:0;">
+                  <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.06);">
+                    <span style="color:#64748b;font-size:13px;">Honorarios totales</span>
+                    <span style="color:#fff;font-weight:700;font-size:13px;">Precio fijo ✓</span>
+                  </div>
+                  <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.06);">
+                    <span style="color:#64748b;font-size:13px;">Costes ocultos</span>
+                    <span style="color:#4ade80;font-weight:700;font-size:13px;">€0</span>
+                  </div>
+                  <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.06);">
+                    <span style="color:#64748b;font-size:13px;">Revisiones de precio</span>
+                    <span style="color:#4ade80;font-weight:700;font-size:13px;">Nunca</span>
+                  </div>
+                  <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 0;">
+                    <span style="color:#64748b;font-size:13px;">Si no ganamos</span>
+                    <span style="color:#4ade80;font-weight:700;font-size:13px;">No cobramos</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Visual 4 -->
+              <div class="apple-visual" id="visual-4" style="position:absolute;inset:0;opacity:0;transform:scale(0.96);">
+                <div style="height:100%;background:rgba(13,20,38,0.8);border:1px solid rgba(59,130,246,0.2);border-radius:20px;padding:28px;display:flex;flex-direction:column;justify-content:center;gap:12px;">
+                  <p style="color:#64748b;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px;">Nosotros nos encargamos de</p>
+                  <div style="display:flex;align-items:center;gap:10px;"><div style="width:6px;height:6px;border-radius:50%;background:#3b82f6;flex-shrink:0;"></div><span style="color:#cbd5e1;font-size:13px;">Preparar y presentar toda la documentación</span></div>
+                  <div style="display:flex;align-items:center;gap:10px;"><div style="width:6px;height:6px;border-radius:50%;background:#3b82f6;flex-shrink:0;"></div><span style="color:#cbd5e1;font-size:13px;">Concurso de acreedores ante el Juzgado</span></div>
+                  <div style="display:flex;align-items:center;gap:10px;"><div style="width:6px;height:6px;border-radius:50%;background:#3b82f6;flex-shrink:0;"></div><span style="color:#cbd5e1;font-size:13px;">Negociación con bancos, Hacienda y ASNEF</span></div>
+                  <div style="display:flex;align-items:center;gap:10px;"><div style="width:6px;height:6px;border-radius:50%;background:#3b82f6;flex-shrink:0;"></div><span style="color:#cbd5e1;font-size:13px;">Seguimiento mensual y comunicación continua</span></div>
+                  <div style="margin-top:8px;padding:10px 14px;background:rgba(59,130,246,0.08);border-radius:10px;text-align:center;">
+                    <span style="color:#93c5fd;font-size:12px;font-weight:600;">Tú solo firmas cuando toca</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Visual 5 -->
+              <div class="apple-visual" id="visual-5" style="position:absolute;inset:0;opacity:0;transform:scale(0.96);">
+                <div style="height:100%;background:rgba(5,20,10,0.9);border:1px solid rgba(34,197,94,0.25);border-radius:20px;padding:28px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;gap:16px;">
+                  <div style="width:64px;height:64px;border-radius:50%;background:rgba(34,197,94,0.15);border:2px solid rgba(34,197,94,0.4);display:flex;align-items:center;justify-content:center;">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
                   </div>
                   <div>
-                    <p class="text-white font-600 text-sm mb-1">Lo que miramos:</p>
-                    <ul class="text-slate-400 text-xs space-y-1">
-                      <li>· Importe total de la deuda y número de acreedores</li>
-                      <li>· Ingresos actuales y patrimonio</li>
-                      <li>· Si has actuado de buena fe</li>
-                      <li>· Si estás en concurso o puedes solicitarlo</li>
-                    </ul>
+                    <p style="color:#4ade80;font-size:32px;font-weight:800;line-height:1;">100%</p>
+                    <p style="color:#86efac;font-size:14px;font-weight:600;">deuda cancelada</p>
+                  </div>
+                  <div style="width:100%;display:flex;flex-direction:column;gap:8px;">
+                    <div style="display:flex;align-items:center;gap:8px;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span style="color:#94a3b8;font-size:12px;">ASNEF limpio automáticamente</span></div>
+                    <div style="display:flex;align-items:center;gap:8px;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span style="color:#94a3b8;font-size:12px;">Sin embargos ni llamadas</span></div>
+                    <div style="display:flex;align-items:center;gap:8px;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span style="color:#94a3b8;font-size:12px;">Media: 14 meses hasta sentencia</span></div>
                   </div>
                 </div>
               </div>
+
             </div>
           </div>
 
-          <!-- Step 3 -->
-          <div class="reveal grid md:grid-cols-2 gap-8 items-center">
-            <div class="md:text-right md:pr-12">
-              <div class="inline-flex items-center gap-2 mb-3">
-                <span style="background:rgba(59,130,246,0.15);border:1px solid rgba(59,130,246,0.3);border-radius:20px;padding:3px 12px;color:#60a5fa;font-size:12px;font-weight:700;">PASO 3</span>
-              </div>
-              <h3 class="text-white font-700 text-xl mb-2">Precio cerrado — sabes lo que cuesta antes de empezar</h3>
-              <p class="text-slate-400 text-sm leading-relaxed">Si decidimos trabajar tu caso, te damos el precio total fijo desde el primer día. Sin porcentajes sobre la deuda, sin costes adicionales, sin sorpresas al avanzar. El primer pago simbólico solo se hace cuando confirmamos que podemos ganar.</p>
-            </div>
-            <div class="md:pl-12 relative">
-              <div class="hidden md:flex absolute -left-4 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-blue-600 items-center justify-center z-10 text-white font-800 text-sm">3</div>
-              <div class="card-border rounded-xl bg-ink-800 p-5">
-                <div class="flex items-center justify-between mb-3 pb-3" style="border-bottom:1px solid rgba(255,255,255,0.06)">
-                  <p class="text-slate-400 text-xs">Honorarios totales</p>
-                  <p class="text-white font-700">Precio cerrado ✓</p>
-                </div>
-                <div class="flex items-center justify-between mb-3 pb-3" style="border-bottom:1px solid rgba(255,255,255,0.06)">
-                  <p class="text-slate-400 text-xs">Costes ocultos</p>
-                  <p class="text-green-400 font-700">€0</p>
-                </div>
-                <div class="flex items-center justify-between">
-                  <p class="text-slate-400 text-xs">Si no conseguimos resultado</p>
-                  <p class="text-green-400 font-700">No cobramos</p>
-                </div>
-              </div>
-            </div>
+          <!-- Progress bar -->
+          <div style="position:absolute;bottom:48px;left:50%;transform:translateX(-50%);display:flex;gap:8px;align-items:center;">
+            <div class="step-dot-nav active" data-s="1"></div>
+            <div class="step-dot-nav" data-s="2"></div>
+            <div class="step-dot-nav" data-s="3"></div>
+            <div class="step-dot-nav" data-s="4"></div>
+            <div class="step-dot-nav" data-s="5"></div>
           </div>
-
-          <!-- Step 4 -->
-          <div class="reveal grid md:grid-cols-2 gap-8 items-center">
-            <div class="md:order-2 md:text-left md:pl-12">
-              <div class="inline-flex items-center gap-2 mb-3">
-                <span style="background:rgba(59,130,246,0.15);border:1px solid rgba(59,130,246,0.3);border-radius:20px;padding:3px 12px;color:#60a5fa;font-size:12px;font-weight:700;">PASO 4</span>
-              </div>
-              <h3 class="text-white font-700 text-xl mb-2">Presentamos el concurso y gestionamos todo</h3>
-              <p class="text-slate-400 text-sm leading-relaxed">Preparamos toda la documentación, presentamos el concurso de acreedores ante el juzgado y llevamos el procedimiento de principio a fin. Tú no tienes que hablar con ningún banco. Nosotros somos tu escudo.</p>
-            </div>
-            <div class="md:order-1 md:pr-12 relative">
-              <div class="hidden md:flex absolute -right-4 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-blue-600 items-center justify-center z-10 text-white font-800 text-sm">4</div>
-              <div class="card-border rounded-xl bg-ink-800 p-5">
-                <div class="space-y-2">
-                  <div class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-blue-400 flex-shrink-0"></div><p class="text-slate-300 text-xs">Recopilación y preparación de documentos</p></div>
-                  <div class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-blue-400 flex-shrink-0"></div><p class="text-slate-300 text-xs">Presentación del concurso ante el Juzgado de lo Mercantil</p></div>
-                  <div class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-blue-400 flex-shrink-0"></div><p class="text-slate-300 text-xs">Negociación con acreedores (bancos, Hacienda, ASNEF)</p></div>
-                  <div class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-blue-400 flex-shrink-0"></div><p class="text-slate-300 text-xs">Seguimiento mensual y comunicación continua</p></div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Step 5 -->
-          <div class="reveal grid md:grid-cols-2 gap-8 items-center">
-            <div class="md:text-right md:pr-12">
-              <div class="inline-flex items-center gap-2 mb-3">
-                <span style="background:rgba(34,197,94,0.15);border:1px solid rgba(34,197,94,0.3);border-radius:20px;padding:3px 12px;color:#4ade80;font-size:12px;font-weight:700;">RESULTADO</span>
-              </div>
-              <h3 class="text-white font-700 text-xl mb-2">Sentencia de Exoneración del Pasivo Insatisfecho</h3>
-              <p class="text-slate-400 text-sm leading-relaxed">El juez dicta la resolución que cancela legalmente el 100% de tu deuda. A partir de ese momento no debes nada a nadie. Puedes volver a empezar con ASNEF limpio, sin embargos y sin acreedores llamando.</p>
-            </div>
-            <div class="md:pl-12 relative">
-              <div class="hidden md:flex absolute -left-4 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-green-500 items-center justify-center z-10">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-              </div>
-              <div class="card-border rounded-xl p-5" style="background:rgba(34,197,94,0.06);border-color:rgba(34,197,94,0.2);">
-                <p class="text-green-400 font-700 text-base mb-2">Deuda cancelada al 100%</p>
-                <p class="text-slate-400 text-xs leading-relaxed mb-3">Media de tiempo hasta sentencia: <strong class="text-white">14 meses</strong>. Depende de la complejidad del caso y el juzgado.</p>
-                <div class="flex items-center gap-2">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                  <p class="text-green-300 text-xs">ASNEF limpio automáticamente</p>
-                </div>
-                <div class="flex items-center gap-2 mt-1">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                  <p class="text-green-300 text-xs">Sin embargos ni llamadas de acreedores</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
         </div>
       </div>
     </div>
+
+    <!-- Mobile fallback — simple list -->
+    <div class="md:hidden max-w-lg mx-auto px-6 pb-20 space-y-6">
+      <div class="card-border rounded-2xl bg-ink-800 p-6">
+        <span style="background:rgba(59,130,246,0.15);border:1px solid rgba(59,130,246,0.3);border-radius:20px;padding:3px 12px;color:#60a5fa;font-size:11px;font-weight:700;">PASO 1</span>
+        <h3 class="text-white font-700 text-lg mt-3 mb-2">Nos cuentas tu situación</h3>
+        <p class="text-slate-400 text-sm leading-relaxed">Formulario o llamada. Respuesta en 24h. Sin compromiso ni coste.</p>
+      </div>
+      <div class="card-border rounded-2xl bg-ink-800 p-6">
+        <span style="background:rgba(59,130,246,0.15);border:1px solid rgba(59,130,246,0.3);border-radius:20px;padding:3px 12px;color:#60a5fa;font-size:11px;font-weight:700;">PASO 2</span>
+        <h3 class="text-white font-700 text-lg mt-3 mb-2">Analizamos la viabilidad</h3>
+        <p class="text-slate-400 text-sm leading-relaxed">Solo aceptamos casos que podemos ganar. Si no, te lo decimos gratis.</p>
+      </div>
+      <div class="card-border rounded-2xl bg-ink-800 p-6">
+        <span style="background:rgba(59,130,246,0.15);border:1px solid rgba(59,130,246,0.3);border-radius:20px;padding:3px 12px;color:#60a5fa;font-size:11px;font-weight:700;">PASO 3</span>
+        <h3 class="text-white font-700 text-lg mt-3 mb-2">Precio cerrado desde el día 1</h3>
+        <p class="text-slate-400 text-sm leading-relaxed">Sin sorpresas. Lo que firmamos es lo que pagas.</p>
+      </div>
+      <div class="card-border rounded-2xl bg-ink-800 p-6">
+        <span style="background:rgba(59,130,246,0.15);border:1px solid rgba(59,130,246,0.3);border-radius:20px;padding:3px 12px;color:#60a5fa;font-size:11px;font-weight:700;">PASO 4</span>
+        <h3 class="text-white font-700 text-lg mt-3 mb-2">Gestionamos todo el proceso</h3>
+        <p class="text-slate-400 text-sm leading-relaxed">Tú no hablas con ningún banco. Nosotros gestionamos todo.</p>
+      </div>
+      <div class="card-border rounded-2xl p-6" style="background:rgba(5,20,10,0.9);border-color:rgba(34,197,94,0.25);">
+        <span style="background:rgba(34,197,94,0.15);border:1px solid rgba(34,197,94,0.3);border-radius:20px;padding:3px 12px;color:#4ade80;font-size:11px;font-weight:700;">RESULTADO</span>
+        <h3 class="text-white font-700 text-lg mt-3 mb-2">Deuda cancelada al 100%</h3>
+        <p class="text-slate-400 text-sm leading-relaxed">ASNEF limpio, sin embargos. Media 14 meses hasta sentencia.</p>
+      </div>
+    </div>
+
   </section>
 
   <!-- ═══════════════════════════════════════════════
@@ -1464,6 +1540,38 @@
       btn.style.background = 'linear-gradient(135deg, #22c55e, #16a34a)';
       btn.style.animation = 'none';
     });
+
+  // Apple-style scroll steps
+  (function() {
+    if (!document.getElementById('steps-scroll')) return;
+    const totalSteps = 5;
+    const dots = document.querySelectorAll('.step-dot-nav');
+
+    function showStep(n) {
+      for (let i = 1; i <= totalSteps; i++) {
+        const step = document.getElementById('step-' + i);
+        const vis  = document.getElementById('visual-' + i);
+        const dot  = dots[i - 1];
+        const active = (i === n);
+        gsap.to(step,  { opacity: active ? 1 : 0, y: active ? 0 : (i < n ? -30 : 40), duration: 0.5, ease: 'power2.out' });
+        gsap.to(vis,   { opacity: active ? 1 : 0, scale: active ? 1 : 0.96, duration: 0.5, ease: 'power2.out' });
+        dot.classList.toggle('active', active);
+      }
+    }
+
+    // Init first step
+    showStep(1);
+
+    ScrollTrigger.create({
+      trigger: '#steps-scroll',
+      start: 'top top',
+      end: 'bottom bottom',
+      onUpdate: (self) => {
+        const step = Math.min(totalSteps, Math.ceil(self.progress * totalSteps + 0.01));
+        showStep(step);
+      }
+    });
+  })();
 
   // FAQ accordion
   function toggleFaq(btn) {
