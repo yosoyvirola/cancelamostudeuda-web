@@ -539,6 +539,121 @@
       border-color: rgba(0,0,0,0.12);
       box-shadow: 0 4px 20px rgba(0,0,0,0.12);
     }
+
+    /* ── LIGHT MODE — secciones nuevas ── */
+
+    /* Fondo general secciones */
+    body.light #como-funciona,
+    body.light #garantia,
+    body.light #casos-reales,
+    body.light #faq { background: transparent; }
+
+    /* Steps sticky — fondo del panel */
+    body.light #steps-sticky { background: transparent; }
+
+    /* Apple step text */
+    body.light .apple-step h3 { color: #0d1426 !important; }
+    body.light .apple-step p  { color: #374151 !important; }
+
+    /* Apple visual cards */
+    body.light .apple-visual > div {
+      background: #ffffff !important;
+      border-color: rgba(59,130,246,0.2) !important;
+    }
+    body.light .apple-visual span[style*="color:#94a3b8"],
+    body.light .apple-visual span[style*="color:#cbd5e1"],
+    body.light .apple-visual p[style*="color:#94a3b8"],
+    body.light .apple-visual p[style*="color:#64748b"] { color: #374151 !important; }
+    body.light .apple-visual p[style*="color:#fff"],
+    body.light .apple-visual span[style*="color:#fff"] { color: #0d1426 !important; }
+    body.light .apple-visual p[style*="color:#4ade80"],
+    body.light .apple-visual span[style*="color:#4ade80"] { color: #16a34a !important; }
+    body.light .apple-visual p[style*="color:#93c5fd"],
+    body.light .apple-visual span[style*="color:#93c5fd"] { color: #1d4ed8 !important; }
+    body.light .apple-visual div[style*="border-bottom:1px solid rgba(255,255,255,0.06)"] {
+      border-bottom-color: rgba(0,0,0,0.08) !important;
+    }
+    body.light .apple-visual div[style*="background:rgba(59,130,246,0.08)"],
+    body.light .apple-visual div[style*="background:rgba(34,197,94,0.07)"] {
+      background: rgba(59,130,246,0.06) !important;
+    }
+
+    /* Step dot nav */
+    body.light .step-dot-nav { background: rgba(0,0,0,0.15); }
+    body.light .step-dot-nav.active { background: #2563eb; }
+
+    /* Garantía cards */
+    body.light #garantia .card-border[style*="linear-gradient(135deg,rgba(13"] {
+      background: #ffffff !important;
+    }
+    body.light #garantia div[style*="background:rgba(34,197,94,0.07)"] {
+      background: rgba(34,197,94,0.07) !important;
+      border-color: rgba(34,197,94,0.25) !important;
+    }
+    body.light #garantia p[style*="color:#94a3b8"],
+    body.light #garantia p[style*="color:#64748b"] { color: #374151 !important; }
+    body.light #garantia p[style*="color:#fff"] { color: #0d1426 !important; }
+    body.light #garantia p[style*="color:#4ade80"] { color: #16a34a !important; }
+    body.light #garantia span[style*="color:#ef4444"] { color: #dc2626 !important; }
+    body.light #garantia span[style*="color:#4ade80"] { color: #16a34a !important; }
+    body.light #garantia div[style*="background:rgba(13,20,38"] {
+      background: #f8fafc !important;
+      border-color: rgba(59,130,246,0.15) !important;
+    }
+    body.light #garantia p.text-slate-500 { color: #6b7280 !important; }
+
+    /* Testimonials marquee */
+    body.light .testimonials-marquee-wrap::before { background: linear-gradient(to right, #f4f6fb, transparent); }
+    body.light .testimonials-marquee-wrap::after  { background: linear-gradient(to left,  #f4f6fb, transparent); }
+    body.light .tcard-inner {
+      background: #ffffff !important;
+      border-color: rgba(59,130,246,0.15) !important;
+    }
+    body.light .tcard:hover .tcard-inner { border-color: rgba(59,130,246,0.4) !important; }
+    body.light .tc-name   { color: #0d1426 !important; }
+    body.light .tc-sub    { color: #6b7280 !important; }
+    body.light .tc-text   { color: #374151 !important; }
+    body.light .tc-amount { color: #16a34a !important; }
+    body.light .tc-amount span { color: #9ca3af !important; }
+    body.light .tc-lawyer { color: #2563eb !important; border-top-color: rgba(0,0,0,0.07) !important; }
+
+    /* Lawyer hero slider */
+    body.light #client-slider > div { background: transparent; }
+    body.light #hero-right .card-border {
+      background: #f0f4ff !important;
+      border-color: rgba(59,130,246,0.2) !important;
+    }
+    body.light #hero-right div[style*="background:rgba(255,255,255,0.04)"] {
+      background: rgba(59,130,246,0.04) !important;
+      border-color: rgba(59,130,246,0.12) !important;
+    }
+    body.light #hero-right p[style*="color:#fff"],
+    body.light #hero-right p[style*="color:#white"] { color: #0d1426 !important; }
+    body.light #hero-right p[style*="color:#94a3b8"] { color: #374151 !important; }
+    body.light #hero-right p[style*="color:#93c5fd"] { color: #1d4ed8 !important; }
+    body.light #hero-right p[style*="color:#d8b4fe"] { color: #7c3aed !important; }
+    body.light #hero-right p[style*="color:#86efac"] { color: #16a34a !important; }
+    body.light #hero-right span[style*="color:#4ade80"] { color: #16a34a !important; }
+    body.light #hero-right div[style*="background:rgba(59,130,246,0.1)"] { background: rgba(59,130,246,0.08) !important; }
+    body.light #hero-right div[style*="background:rgba(168,85,247,0.1)"] { background: rgba(168,85,247,0.08) !important; }
+    body.light #hero-right div[style*="background:rgba(34,197,94,0.1)"]  { background: rgba(34,197,94,0.08)  !important; }
+    body.light #hero-right div[style*="background:rgba(34,197,94,0.15)"] { background: rgba(34,197,94,0.1)   !important; }
+    body.light .dot.active { background: #2563eb; }
+
+    /* FAQ */
+    body.light .faq-item { background: #ffffff !important; border-color: rgba(59,130,246,0.15) !important; }
+    body.light .faq-btn span { color: #0d1426 !important; }
+    body.light .faq-body p   { color: #374151 !important; }
+
+    /* Cómo funciona — mobile cards */
+    body.light #como-funciona .card-border[style*="background:rgba(5,20,10"] {
+      background: rgba(34,197,94,0.06) !important;
+      border-color: rgba(34,197,94,0.25) !important;
+    }
+
+    /* Stats bar */
+    body.light #stats-bar { background: transparent; }
+    body.light #stats-bar p { color: #0d1426 !important; }
     .icon-moon, .icon-sun { transition: opacity 0.2s, transform 0.3s; position: absolute; }
     .icon-sun { opacity: 0; transform: rotate(90deg) scale(0.7); }
     body.light .icon-moon { opacity: 0; transform: rotate(-90deg) scale(0.7); }
