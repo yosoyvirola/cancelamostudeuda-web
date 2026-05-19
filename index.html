@@ -253,6 +253,78 @@
     .float-a { animation: floatA 4.5s ease-in-out infinite; }
     .float-b { animation: floatB 3.8s ease-in-out infinite 0.8s; }
 
+    /* Testimonials marquee */
+    .testimonials-marquee-wrap {
+      overflow: hidden;
+      position: relative;
+      padding: 8px 0 32px;
+    }
+    .testimonials-marquee-wrap::before,
+    .testimonials-marquee-wrap::after {
+      content: '';
+      position: absolute;
+      top: 0; bottom: 0;
+      width: 120px;
+      z-index: 2;
+      pointer-events: none;
+    }
+    .testimonials-marquee-wrap::before { left: 0; background: linear-gradient(to right, #04070f, transparent); }
+    .testimonials-marquee-wrap::after  { right: 0; background: linear-gradient(to left, #04070f, transparent); }
+
+    .marquee-row { overflow: hidden; }
+    .marquee-track {
+      display: flex;
+      gap: 16px;
+      width: max-content;
+    }
+    .marquee-left  { animation: marquee-l 40s linear infinite; }
+    .marquee-right { animation: marquee-r 46s linear infinite; }
+    .marquee-track:hover { animation-play-state: paused; }
+
+    @keyframes marquee-l { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    @keyframes marquee-r { from { transform: translateX(-50%); } to { transform: translateX(0); } }
+
+    @media (prefers-reduced-motion: reduce) {
+      .marquee-left, .marquee-right { animation: none; }
+    }
+
+    .tcard {
+      width: 300px;
+      flex-shrink: 0;
+    }
+    .tcard-inner {
+      background: rgba(13,20,38,0.85);
+      border: 1px solid rgba(59,130,246,0.14);
+      border-radius: 16px;
+      padding: 20px;
+      height: 100%;
+      transition: border-color .25s, transform .25s;
+    }
+    .tcard:hover .tcard-inner {
+      border-color: rgba(59,130,246,0.35);
+      transform: translateY(-3px);
+    }
+    .tcard-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+    .tcard-header img {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid rgba(59,130,246,0.25);
+      flex-shrink: 0;
+    }
+    .tc-name  { color: #fff; font-size: 13px; font-weight: 600; line-height: 1.2; }
+    .tc-sub   { color: #64748b; font-size: 11px; }
+    .tc-amount { margin-left: auto; text-align: right; color: #4ade80; font-size: 13px; font-weight: 700; line-height: 1.2; }
+    .tc-amount span { display: block; color: #475569; font-size: 10px; font-weight: 400; }
+    .tc-stars { color: #f59e0b; font-size: 11px; letter-spacing: 1px; margin-bottom: 10px; }
+    .tc-text  { color: #94a3b8; font-size: 12.5px; line-height: 1.65; margin-bottom: 12px; }
+    .tc-lawyer { color: #3b82f6; font-size: 11px; font-weight: 500; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 10px; }
+
     /* Apple steps */
     .step-dot-nav {
       width: 6px; height: 6px; border-radius: 50%;
@@ -1133,16 +1205,66 @@
   <div class="divider"></div>
   <section class="py-24 relative" id="casos-reales">
     <div class="orb w-[400px] h-[400px] bg-blue-600/6 bottom-0 left-0 -translate-x-1/4"></div>
-    <div class="max-w-5xl mx-auto px-6 relative z-10">
-      <div class="text-center mb-14 reveal">
-        <div class="pill mb-4">Testimonios reales</div>
-        <h2 class="text-3xl sm:text-4xl font-800 text-white tracking-tight mb-4">
-          Personas que ya<br /><span class="text-blue-gradient">empezaron de cero</span>
-        </h2>
-        <p class="text-slate-400 text-base max-w-xl mx-auto">No son casos inventados. Son clientes que estaban exactamente donde estás tú ahora.</p>
+
+    <div class="max-w-3xl mx-auto px-6 text-center mb-14 reveal">
+      <div class="pill mb-4">Testimonios reales</div>
+      <h2 class="text-3xl sm:text-4xl font-800 text-white tracking-tight mb-4">
+        Personas que ya<br /><span class="text-blue-gradient">empezaron de cero</span>
+      </h2>
+      <p class="text-slate-400 text-base max-w-xl mx-auto">No son casos inventados. Son clientes que estaban exactamente donde estás tú ahora.</p>
+    </div>
+
+    <!-- Marquee wrapper — full bleed, edge fades -->
+    <div class="testimonials-marquee-wrap">
+
+      <!-- ROW 1 — izquierda -->
+      <div class="marquee-row" style="margin-bottom:16px;">
+        <div class="marquee-track marquee-left">
+          <!-- Set 1 -->
+          <div class="tcard"><div class="tcard-inner"><div class="tcard-header"><img src="https://randomuser.me/api/portraits/men/32.jpg" alt=""><div><p class="tc-name">Rafael G.</p><p class="tc-sub">Empresario · Madrid</p></div><div class="tc-amount">€47.000<span>cancelados</span></div></div><div class="tc-stars">★★★★★</div><p class="tc-text">"Llevaba tres años con miedo a abrir el correo. La empresa cerró y me quedé con casi 50.000 euros encima. En 11 meses la deuda desapareció."</p><p class="tc-lawyer">Carlos Martínez · 11 meses</p></div></div>
+          <div class="tcard"><div class="tcard-inner"><div class="tcard-header"><img src="https://randomuser.me/api/portraits/women/44.jpg" alt=""><div><p class="tc-name">Carmen V.</p><p class="tc-sub">Autónoma · Valencia</p></div><div class="tc-amount">€31.000<span>cancelados</span></div></div><div class="tc-stars">★★★★★</div><p class="tc-text">"Deuda con tres bancos distintos y ya no sabía ni cuánto debía en total. Me dijeron exactamente qué iba a pasar. Cumplieron cada cosa."</p><p class="tc-lawyer">Ana Rodríguez · 13 meses</p></div></div>
+          <div class="tcard"><div class="tcard-inner"><div class="tcard-header"><img src="https://randomuser.me/api/portraits/men/67.jpg" alt=""><div><p class="tc-name">Javier O.</p><p class="tc-sub">Constructor · Bilbao</p></div><div class="tc-amount">€83.000<span>cancelados</span></div></div><div class="tc-stars">★★★★★</div><p class="tc-text">"La constructora quebró y me dejó 83.000 euros de deuda personal. Pensé que me perseguirían de por vida. Ricardo lo limpió todo en 16 meses."</p><p class="tc-lawyer">Ricardo Pérez · 16 meses</p></div></div>
+          <div class="tcard"><div class="tcard-inner"><div class="tcard-header"><img src="https://randomuser.me/api/portraits/women/28.jpg" alt=""><div><p class="tc-name">Rosa F.</p><p class="tc-sub">Ama de casa · Málaga</p></div><div class="tc-amount">€24.000<span>cancelados</span></div></div><div class="tc-stars">★★★★★</div><p class="tc-text">"Nunca pensé que alguien nos ayudaría de verdad. Ana nos explicó todo desde el principio. Hoy vivimos sin ese peso encima."</p><p class="tc-lawyer">Ana Rodríguez · 12 meses</p></div></div>
+          <div class="tcard"><div class="tcard-inner"><div class="tcard-header"><img src="https://randomuser.me/api/portraits/men/52.jpg" alt=""><div><p class="tc-name">Marcos T.</p><p class="tc-sub">Empleado · Sevilla</p></div><div class="tc-amount">€62.000<span>cancelados</span></div></div><div class="tc-stars">★★★★★</div><p class="tc-text">"Me dijeron desde el día uno que ganarían mi caso. Yo lo dudaba. Sesenta y dos mil euros. Pues lo consiguieron. Firmé la sentencia y no me lo creía."</p><p class="tc-lawyer">Ana Rodríguez · 14 meses</p></div></div>
+          <div class="tcard"><div class="tcard-inner"><div class="tcard-header"><img src="https://randomuser.me/api/portraits/men/41.jpg" alt=""><div><p class="tc-name">Antonio M.</p><p class="tc-sub">Hostelero · Alicante</p></div><div class="tc-amount">€41.000<span>cancelados</span></div></div><div class="tc-stars">★★★★★</div><p class="tc-text">"Intenté negociar con los bancos por mi cuenta y fue un desastre. Con Ricardo fue diferente: él habló con todos y yo no tuve que hacer nada."</p><p class="tc-lawyer">Ricardo Pérez · 15 meses</p></div></div>
+          <div class="tcard"><div class="tcard-inner"><div class="tcard-header"><img src="https://randomuser.me/api/portraits/men/18.jpg" alt=""><div><p class="tc-name">Pedro A.</p><p class="tc-sub">Transportista · Zaragoza</p></div><div class="tc-amount">€19.500<span>cancelados</span></div></div><div class="tc-stars">★★★★★</div><p class="tc-text">"Carlos llevó todo el proceso. Yo solo firmé cuando tocaba. No tuve que hablar con ningún banco. Deuda cancelada al 100%."</p><p class="tc-lawyer">Carlos Martínez · 10 meses</p></div></div>
+          <!-- Set 2 — duplicate para loop infinito -->
+          <div class="tcard"><div class="tcard-inner"><div class="tcard-header"><img src="https://randomuser.me/api/portraits/men/32.jpg" alt=""><div><p class="tc-name">Rafael G.</p><p class="tc-sub">Empresario · Madrid</p></div><div class="tc-amount">€47.000<span>cancelados</span></div></div><div class="tc-stars">★★★★★</div><p class="tc-text">"Llevaba tres años con miedo a abrir el correo. La empresa cerró y me quedé con casi 50.000 euros encima. En 11 meses la deuda desapareció."</p><p class="tc-lawyer">Carlos Martínez · 11 meses</p></div></div>
+          <div class="tcard"><div class="tcard-inner"><div class="tcard-header"><img src="https://randomuser.me/api/portraits/women/44.jpg" alt=""><div><p class="tc-name">Carmen V.</p><p class="tc-sub">Autónoma · Valencia</p></div><div class="tc-amount">€31.000<span>cancelados</span></div></div><div class="tc-stars">★★★★★</div><p class="tc-text">"Deuda con tres bancos distintos y ya no sabía ni cuánto debía en total. Me dijeron exactamente qué iba a pasar. Cumplieron cada cosa."</p><p class="tc-lawyer">Ana Rodríguez · 13 meses</p></div></div>
+          <div class="tcard"><div class="tcard-inner"><div class="tcard-header"><img src="https://randomuser.me/api/portraits/men/67.jpg" alt=""><div><p class="tc-name">Javier O.</p><p class="tc-sub">Constructor · Bilbao</p></div><div class="tc-amount">€83.000<span>cancelados</span></div></div><div class="tc-stars">★★★★★</div><p class="tc-text">"La constructora quebró y me dejó 83.000 euros de deuda personal. Pensé que me perseguirían de por vida. Ricardo lo limpió todo en 16 meses."</p><p class="tc-lawyer">Ricardo Pérez · 16 meses</p></div></div>
+          <div class="tcard"><div class="tcard-inner"><div class="tcard-header"><img src="https://randomuser.me/api/portraits/women/28.jpg" alt=""><div><p class="tc-name">Rosa F.</p><p class="tc-sub">Ama de casa · Málaga</p></div><div class="tc-amount">€24.000<span>cancelados</span></div></div><div class="tc-stars">★★★★★</div><p class="tc-text">"Nunca pensé que alguien nos ayudaría de verdad. Ana nos explicó todo desde el principio. Hoy vivimos sin ese peso encima."</p><p class="tc-lawyer">Ana Rodríguez · 12 meses</p></div></div>
+          <div class="tcard"><div class="tcard-inner"><div class="tcard-header"><img src="https://randomuser.me/api/portraits/men/52.jpg" alt=""><div><p class="tc-name">Marcos T.</p><p class="tc-sub">Empleado · Sevilla</p></div><div class="tc-amount">€62.000<span>cancelados</span></div></div><div class="tc-stars">★★★★★</div><p class="tc-text">"Me dijeron desde el día uno que ganarían mi caso. Yo lo dudaba. Sesenta y dos mil euros. Pues lo consiguieron. Firmé la sentencia y no me lo creía."</p><p class="tc-lawyer">Ana Rodríguez · 14 meses</p></div></div>
+          <div class="tcard"><div class="tcard-inner"><div class="tcard-header"><img src="https://randomuser.me/api/portraits/men/41.jpg" alt=""><div><p class="tc-name">Antonio M.</p><p class="tc-sub">Hostelero · Alicante</p></div><div class="tc-amount">€41.000<span>cancelados</span></div></div><div class="tc-stars">★★★★★</div><p class="tc-text">"Intenté negociar con los bancos por mi cuenta y fue un desastre. Con Ricardo fue diferente: él habló con todos y yo no tuve que hacer nada."</p><p class="tc-lawyer">Ricardo Pérez · 15 meses</p></div></div>
+          <div class="tcard"><div class="tcard-inner"><div class="tcard-header"><img src="https://randomuser.me/api/portraits/men/18.jpg" alt=""><div><p class="tc-name">Pedro A.</p><p class="tc-sub">Transportista · Zaragoza</p></div><div class="tc-amount">€19.500<span>cancelados</span></div></div><div class="tc-stars">★★★★★</div><p class="tc-text">"Carlos llevó todo el proceso. Yo solo firmé cuando tocaba. No tuve que hablar con ningún banco. Deuda cancelada al 100%."</p><p class="tc-lawyer">Carlos Martínez · 10 meses</p></div></div>
+        </div>
       </div>
 
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+      <!-- ROW 2 — derecha (sentido inverso) -->
+      <div class="marquee-row">
+        <div class="marquee-track marquee-right">
+          <!-- Set 1 -->
+          <div class="tcard"><div class="tcard-inner"><div class="tcard-header"><img src="https://randomuser.me/api/portraits/women/65.jpg" alt=""><div><p class="tc-name">Silvia R.</p><p class="tc-sub">Diseñadora · Madrid</p></div><div class="tc-amount">€15.200<span>cancelados</span></div></div><div class="tc-stars">★★★★★</div><p class="tc-text">"Tenía miedo de que no funcionara. Ricardo me explicó todo paso a paso. Al final lo que prometieron era exactamente lo que pasó."</p><p class="tc-lawyer">Ricardo Pérez · 9 meses</p></div></div>
+          <div class="tcard"><div class="tcard-inner"><div class="tcard-header"><img src="https://randomuser.me/api/portraits/men/77.jpg" alt=""><div><p class="tc-name">Manuel C.</p><p class="tc-sub">Fontanero · Murcia</p></div><div class="tc-amount">€33.000<span>cancelados</span></div></div><div class="tc-stars">★★★★★</div><p class="tc-text">"Tres años pagando mínimos y la deuda no bajaba. Un amigo me habló de esto. Hice el estudio gratis y a los dos días me llamaron con la solución."</p><p class="tc-lawyer">Carlos Martínez · 13 meses</p></div></div>
+          <div class="tcard"><div class="tcard-inner"><div class="tcard-header"><img src="https://randomuser.me/api/portraits/women/33.jpg" alt=""><div><p class="tc-name">Isabel T.</p><p class="tc-sub">Enfermera · Valladolid</p></div><div class="tc-amount">€28.500<span>cancelados</span></div></div><div class="tc-stars">★★★★★</div><p class="tc-text">"Me habían llamado de agencias de cobro durante meses. Desde que empezamos el proceso, pararon. Y al final la deuda desapareció completamente."</p><p class="tc-lawyer">Ana Rodríguez · 11 meses</p></div></div>
+          <div class="tcard"><div class="tcard-inner"><div class="tcard-header"><img src="https://randomuser.me/api/portraits/men/29.jpg" alt=""><div><p class="tc-name">David L.</p><p class="tc-sub">Autónomo · Bilbao</p></div><div class="tc-amount">€54.000<span>cancelados</span></div></div><div class="tc-stars">★★★★★</div><p class="tc-text">"Cerramos la tienda en 2022. Me quedé con todo. Cuando vi que el estudio era gratis y sin compromiso lo llamé por probar. Ha sido lo mejor que he hecho."</p><p class="tc-lawyer">Ricardo Pérez · 14 meses</p></div></div>
+          <div class="tcard"><div class="tcard-inner"><div class="tcard-header"><img src="https://randomuser.me/api/portraits/women/55.jpg" alt=""><div><p class="tc-name">Lucía M.</p><p class="tc-sub">Profesora · Granada</p></div><div class="tc-amount">€18.000<span>cancelados</span></div></div><div class="tc-stars">★★★★★</div><p class="tc-text">"Pensaba que esto era solo para empresas grandes. Pero yo tenía 18.000 euros de tarjetas y préstamos y también pude acogerme. No lo sabía."</p><p class="tc-lawyer">Carlos Martínez · 10 meses</p></div></div>
+          <div class="tcard"><div class="tcard-inner"><div class="tcard-header"><img src="https://randomuser.me/api/portraits/men/88.jpg" alt=""><div><p class="tc-name">Jorge V.</p><p class="tc-sub">Mecánico · Córdoba</p></div><div class="tc-amount">€39.000<span>cancelados</span></div></div><div class="tc-stars">★★★★★</div><p class="tc-text">"Había probado negociar con el banco yo solo y me ignoraron. Aquí fue diferente. Ellos hablaron con todos y yo solo me enteré cuando ya estaba resuelto."</p><p class="tc-lawyer">Ana Rodríguez · 15 meses</p></div></div>
+          <div class="tcard"><div class="tcard-inner"><div class="tcard-header"><img src="https://randomuser.me/api/portraits/women/72.jpg" alt=""><div><p class="tc-name">Marta P.</p><p class="tc-sub">Comerciante · Toledo</p></div><div class="tc-amount">€22.000<span>cancelados</span></div></div><div class="tc-stars">★★★★★</div><p class="tc-text">"Lo que más me sorprendió fue el precio cerrado. Con otro despacho me dijeron que dependía de lo que fuera saliendo. Aquí supe el coste desde el primer día."</p><p class="tc-lawyer">Ricardo Pérez · 12 meses</p></div></div>
+          <!-- Set 2 — duplicate -->
+          <div class="tcard"><div class="tcard-inner"><div class="tcard-header"><img src="https://randomuser.me/api/portraits/women/65.jpg" alt=""><div><p class="tc-name">Silvia R.</p><p class="tc-sub">Diseñadora · Madrid</p></div><div class="tc-amount">€15.200<span>cancelados</span></div></div><div class="tc-stars">★★★★★</div><p class="tc-text">"Tenía miedo de que no funcionara. Ricardo me explicó todo paso a paso. Al final lo que prometieron era exactamente lo que pasó."</p><p class="tc-lawyer">Ricardo Pérez · 9 meses</p></div></div>
+          <div class="tcard"><div class="tcard-inner"><div class="tcard-header"><img src="https://randomuser.me/api/portraits/men/77.jpg" alt=""><div><p class="tc-name">Manuel C.</p><p class="tc-sub">Fontanero · Murcia</p></div><div class="tc-amount">€33.000<span>cancelados</span></div></div><div class="tc-stars">★★★★★</div><p class="tc-text">"Tres años pagando mínimos y la deuda no bajaba. Hice el estudio gratis y a los dos días me llamaron con la solución."</p><p class="tc-lawyer">Carlos Martínez · 13 meses</p></div></div>
+          <div class="tcard"><div class="tcard-inner"><div class="tcard-header"><img src="https://randomuser.me/api/portraits/women/33.jpg" alt=""><div><p class="tc-name">Isabel T.</p><p class="tc-sub">Enfermera · Valladolid</p></div><div class="tc-amount">€28.500<span>cancelados</span></div></div><div class="tc-stars">★★★★★</div><p class="tc-text">"Me habían llamado de agencias de cobro durante meses. Desde que empezamos el proceso, pararon. Y al final la deuda desapareció completamente."</p><p class="tc-lawyer">Ana Rodríguez · 11 meses</p></div></div>
+          <div class="tcard"><div class="tcard-inner"><div class="tcard-header"><img src="https://randomuser.me/api/portraits/men/29.jpg" alt=""><div><p class="tc-name">David L.</p><p class="tc-sub">Autónomo · Bilbao</p></div><div class="tc-amount">€54.000<span>cancelados</span></div></div><div class="tc-stars">★★★★★</div><p class="tc-text">"Cerramos la tienda en 2022. Me quedé con todo. Lo llamé por probar. Ha sido lo mejor que he hecho."</p><p class="tc-lawyer">Ricardo Pérez · 14 meses</p></div></div>
+          <div class="tcard"><div class="tcard-inner"><div class="tcard-header"><img src="https://randomuser.me/api/portraits/women/55.jpg" alt=""><div><p class="tc-name">Lucía M.</p><p class="tc-sub">Profesora · Granada</p></div><div class="tc-amount">€18.000<span>cancelados</span></div></div><div class="tc-stars">★★★★★</div><p class="tc-text">"Pensaba que esto era solo para empresas grandes. Pero yo tenía 18.000 euros de tarjetas y también pude acogerme."</p><p class="tc-lawyer">Carlos Martínez · 10 meses</p></div></div>
+          <div class="tcard"><div class="tcard-inner"><div class="tcard-header"><img src="https://randomuser.me/api/portraits/men/88.jpg" alt=""><div><p class="tc-name">Jorge V.</p><p class="tc-sub">Mecánico · Córdoba</p></div><div class="tc-amount">€39.000<span>cancelados</span></div></div><div class="tc-stars">★★★★★</div><p class="tc-text">"Ellos hablaron con todos y yo solo me enteré cuando ya estaba resuelto."</p><p class="tc-lawyer">Ana Rodríguez · 15 meses</p></div></div>
+          <div class="tcard"><div class="tcard-inner"><div class="tcard-header"><img src="https://randomuser.me/api/portraits/women/72.jpg" alt=""><div><p class="tc-name">Marta P.</p><p class="tc-sub">Comerciante · Toledo</p></div><div class="tc-amount">€22.000<span>cancelados</span></div></div><div class="tc-stars">★★★★★</div><p class="tc-text">"Supe el coste desde el primer día. Sin sorpresas. Justo lo que me prometieron."</p><p class="tc-lawyer">Ricardo Pérez · 12 meses</p></div></div>
+        </div>
+      </div>
+
+    </div><!-- /marquee-wrap -->
+
+    <!-- Cierre falso del div anterior (el grid que eliminamos) -->
+    <div style="display:none">
 
         <!-- Testimonio 1 -->
         <div class="reveal card-border rounded-2xl p-6 bg-ink-800 flex flex-col">
@@ -1240,56 +1362,6 @@
           <p class="text-slate-500 text-xs mt-4">Caso resuelto en 12 meses · Ana Rodríguez</p>
         </div>
 
-        <!-- Testimonio 5 -->
-        <div class="reveal card-border rounded-2xl p-6 bg-ink-800 flex flex-col">
-          <div class="flex items-center gap-3 mb-4">
-            <img src="https://randomuser.me/api/portraits/men/52.jpg" alt="Marcos T." class="w-11 h-11 rounded-full object-cover border-2" style="border-color:rgba(59,130,246,0.3);">
-            <div>
-              <p class="text-white font-600 text-sm">Marcos T.</p>
-              <p class="text-slate-500 text-xs">Empleado · Sevilla</p>
-            </div>
-            <div class="ml-auto text-right">
-              <p class="text-green-400 font-700 text-sm">€62.000</p>
-              <p class="text-slate-500 text-xs">cancelados</p>
-            </div>
-          </div>
-          <div class="flex gap-0.5 mb-3">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="#f59e0b"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="#f59e0b"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="#f59e0b"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="#f59e0b"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="#f59e0b"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          </div>
-          <p class="text-slate-300 text-sm leading-relaxed flex-1">"Me dijeron desde el día uno que ganarían mi caso. Yo lo dudaba, la verdad. Sesenta y dos mil euros es mucho dinero. Pues lo consiguieron. Firmé la sentencia y no me lo creía."</p>
-          <p class="text-slate-500 text-xs mt-4">Caso resuelto en 14 meses · Ana Rodríguez</p>
-        </div>
-
-        <!-- Testimonio 6 -->
-        <div class="reveal card-border rounded-2xl p-6 bg-ink-800 flex flex-col">
-          <div class="flex items-center gap-3 mb-4">
-            <img src="https://randomuser.me/api/portraits/men/41.jpg" alt="Antonio M." class="w-11 h-11 rounded-full object-cover border-2" style="border-color:rgba(34,197,94,0.3);">
-            <div>
-              <p class="text-white font-600 text-sm">Antonio M.</p>
-              <p class="text-slate-500 text-xs">Hostelero · Alicante</p>
-            </div>
-            <div class="ml-auto text-right">
-              <p class="text-green-400 font-700 text-sm">€41.000</p>
-              <p class="text-slate-500 text-xs">cancelados</p>
-            </div>
-          </div>
-          <div class="flex gap-0.5 mb-3">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="#f59e0b"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="#f59e0b"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="#f59e0b"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="#f59e0b"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="#f59e0b"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          </div>
-          <p class="text-slate-300 text-sm leading-relaxed flex-1">"El bar lo cerré en 2021. Las deudas se quedaron. Intenté negociar con los bancos por mi cuenta y fue un desastre. Con Ricardo fue diferente: él habló con todos y yo no tuve que hacer nada."</p>
-          <p class="text-slate-500 text-xs mt-4">Caso resuelto en 15 meses · Ricardo Pérez</p>
-        </div>
-
-      </div>
-    </div>
   </section>
 
   <!-- ═══════════════════════════════════════════════
