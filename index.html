@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ley de la Segunda Oportunidad — Cancelamos tu deuda o no cobramos</title>
+  <meta name="description" content="Estudio gratuito de viabilidad. Precio cerrado desde el primer día. Solo trabajamos tu caso si podemos garantizar el 100% de éxito." />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230a0f1e'/%3E%3Ctext x='16' y='23' text-anchor='middle' font-family='Georgia,serif' font-size='16' font-weight='700' fill='%233b82f6' letter-spacing='-0.5'%3EL2%3C/text%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { outfit: ['Outfit', 'sans-serif'] },
+          colors: {
+            blue: {
+              400: '#60a5fa',
+              500: '#3b82f6',
+              600: '#2563eb',
+              700: '#1d4ed8',
+            },
+            ink: {
+              950: '#04070f',
+              900: '#080c18',
+              800: '#0d1426',
+              700: '#131d35',
+              600: '#1a2640',
+              500: '#243352',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Outfit', sans-serif;
+      background-color: #04070f;
+      color: #eef0f5;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    ::selection { background: #3b82f620; color: #eef0f5; }
+
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: #04070f; }
+    ::-webkit-scrollbar-thumb { background: #1a2640; border-radius: 2px; }
+
+    /* Blue gradient text */
+    .text-blue-gradient {
+      background: linear-gradient(135deg, #93c5fd 0%, #3b82f6 50%, #1d4ed8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Red gradient text (urgency) */
+    .text-red-gradient {
+      background: linear-gradient(135deg, #fca5a5 0%, #ef4444 60%, #b91c1c 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Noise overlay */
+    .noise::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 1000;
+      opacity: 0.35;
+    }
+
+    /* Nav glass */
+    .nav-glass {
+      background: rgba(4,7,15,0.75);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+
+    /* CTA primary */
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: linear-gradient(135deg, #3b82f6 0%, #2563eb 60%, #1d4ed8 100%);
+      color: #ffffff;
+      font-weight: 700;
+      padding: 18px 36px;
+      border-radius: 8px;
+      font-size: 16px;
+      letter-spacing: -0.01em;
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      cursor: pointer;
+      border: none;
+      text-decoration: none;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 0 0 0 rgba(59,130,246,0), 0 4px 20px rgba(59,130,246,0.25);
+      animation: btnGlowPulse 3s ease-in-out infinite;
+    }
+    @keyframes btnGlowPulse {
+      0%,100% { box-shadow: 0 0 18px rgba(59,130,246,0.3), 0 4px 20px rgba(59,130,246,0.2); }
+      50%      { box-shadow: 0 0 40px rgba(59,130,246,0.6), 0 8px 32px rgba(59,130,246,0.35); }
+    }
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -120%;
+      width: 60%; height: 100%;
+      background: linear-gradient(105deg, transparent 20%, rgba(255,255,255,0.25) 50%, transparent 80%);
+      transform: skewX(-15deg);
+      animation: btnShimmer 3.5s ease-in-out infinite;
+    }
+    @keyframes btnShimmer {
+      0%,60%,100% { left: -120%; }
+      80%          { left: 160%; }
+    }
+    .btn-primary:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 0 52px rgba(59,130,246,0.75), 0 12px 40px rgba(59,130,246,0.4);
+      animation: none;
+    }
+    .btn-primary:active { transform: translateY(-1px) scale(0.99); }
+    .btn-primary span, .btn-primary svg { position: relative; z-index: 1; }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: #94a3b8;
+      font-weight: 500;
+      padding: 16px 24px;
+      border-radius: 8px;
+      font-size: 15px;
+      border: 1px solid rgba(255,255,255,0.09);
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      cursor: pointer;
+      background: transparent;
+      text-decoration: none;
+    }
+    .btn-ghost:hover {
+      color: #eef0f5;
+      border-color: rgba(59,130,246,0.35);
+      background: rgba(59,130,246,0.06);
+    }
+
+    /* Pill */
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 100px;
+      border: 1px solid rgba(59,130,246,0.28);
+      color: #60a5fa;
+      background: rgba(59,130,246,0.08);
+    }
+
+    .pill-red {
+      border-color: rgba(239,68,68,0.28);
+      color: #f87171;
+      background: rgba(239,68,68,0.08);
+    }
+
+    /* Hero glow orb */
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      pointer-events: none;
+    }
+
+    /* Animated border card */
+    .card-border {
+      position: relative;
+    }
+    .card-border::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: 1px;
+      background: linear-gradient(135deg, rgba(59,130,246,0.4), rgba(59,130,246,0.04), rgba(59,130,246,0.25));
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+
+    /* Section reveal */
+    .reveal { opacity: 0; transform: translateY(28px); }
+
+    /* Divider */
+    .divider { height: 1px; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent); }
+
+    /* Lawyer avatar placeholder */
+    .lawyer-avatar {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(160deg, #0d1426 0%, #131d35 60%, #1a2640 100%);
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .lawyer-silhouette {
+      width: 85%;
+      height: 90%;
+      background: linear-gradient(180deg, #1e3a5f 0%, #243352 40%, #0d1426 100%);
+      clip-path: polygon(50% 0%, 65% 8%, 75% 20%, 75% 45%, 90% 55%, 100% 100%, 0% 100%, 10% 55%, 25% 45%, 25% 20%, 35% 8%);
+      position: relative;
+    }
+    .lawyer-head {
+      position: absolute;
+      top: -28%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 38%;
+      padding-bottom: 38%;
+      border-radius: 50%;
+      background: linear-gradient(180deg, #2a4a7f 0%, #1e3a5f 100%);
+    }
+
+    /* Trust badge */
+    .trust-badge {
+      background: rgba(13,20,38,0.9);
+      border: 1px solid rgba(59,130,246,0.18);
+      border-radius: 12px;
+      backdrop-filter: blur(16px);
+      padding: 14px 18px;
+    }
+
+    /* Floating animation */
+    @keyframes floatA { 0%,100%{transform:translateY(0px)} 50%{transform:translateY(-8px)} }
+    @keyframes floatB { 0%,100%{transform:translateY(0px)} 50%{transform:translateY(-6px)} }
+    .float-a { animation: floatA 4.5s ease-in-out infinite; }
+    .float-b { animation: floatB 3.8s ease-in-out infinite 0.8s; }
+
+    /* Input */
+    .input-field {
+      width: 100%;
+      background: rgba(13,20,38,0.8);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 8px;
+      padding: 15px 18px;
+      color: #eef0f5;
+      font-family: 'Outfit', sans-serif;
+      font-size: 15px;
+      transition: border-color 0.3s, box-shadow 0.3s;
+      outline: none;
+    }
+    .input-field::placeholder { color: #4a5568; }
+    .input-field:focus {
+      border-color: rgba(59,130,246,0.5);
+      box-shadow: 0 0 0 3px rgba(59,130,246,0.1);
+    }
+
+    /* Strike text */
+    .strike {
+      position: relative;
+      color: #64748b;
+    }
+    .strike::after {
+      content: '';
+      position: absolute;
+      left: 0; top: 50%;
+      width: 100%; height: 2px;
+      background: #ef4444;
+      transform: translateY(-50%) rotate(-3deg);
+    }
+
+    /* Ticker bar */
+    @keyframes ticker { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+    .ticker-inner { animation: ticker 30s linear infinite; white-space: nowrap; display: flex; }
+    .ticker-inner:hover { animation-play-state: paused; }
+
+    /* Hook de parada */
+    .hook-line {
+      font-size: clamp(1.05rem, 2.2vw, 1.25rem);
+      font-weight: 500;
+      color: #94a3b8;
+      letter-spacing: -0.01em;
+      line-height: 1.5;
+      border-left: 3px solid #3b82f6;
+      padding-left: 16px;
+    }
+    body.light .hook-line { color: #4b5563; }
+
+    /* Dolor section */
+    .dolor-p {
+      font-size: clamp(1rem, 1.8vw, 1.125rem);
+      line-height: 1.85;
+      color: #94a3b8;
+      font-weight: 400;
+    }
+    .dolor-p strong { color: #e2e8f0; font-weight: 600; }
+    body.light .dolor-p { color: #374151; }
+    body.light .dolor-p strong { color: #0d1426; }
+
+    .dolor-divider {
+      width: 40px;
+      height: 2px;
+      background: linear-gradient(90deg, #3b82f6, transparent);
+      margin: 28px 0;
+    }
+
+    /* ── LIGHT MODE ── */
+    body.light {
+      background-color: #f4f6fb;
+      color: #0d1426;
+    }
+    body.light .noise::after { opacity: 0.08; }
+    body.light .nav-glass {
+      background: rgba(244,246,251,0.85);
+      border-bottom: 1px solid rgba(0,0,0,0.07);
+    }
+    body.light .nav-glass a { color: #374151; }
+    body.light .nav-glass a:hover { color: #0d1426; }
+    body.light .nav-glass span { color: #0d1426; }
+
+    /* Hero backgrounds */
+    body.light section { background: transparent; }
+    body.light .orb { opacity: 0.18; }
+
+    /* Grid */
+    body.light [style*="background-image: linear-gradient(rgba(59,130,246"] { opacity: 0.06; }
+
+    /* Text overrides */
+    body.light p, body.light li { color: #374151; }
+    body.light .text-slate-300 { color: #374151 !important; }
+    body.light .text-slate-400 { color: #4b5563 !important; }
+    body.light .text-slate-500 { color: #6b7280 !important; }
+    body.light .text-slate-600 { color: #6b7280 !important; }
+    body.light strong.text-white, body.light .text-white { color: #0d1426 !important; }
+    body.light h1, body.light h2, body.light h3 { color: #0d1426; }
+    body.light .text-blue-gradient { background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 60%, #3b82f6 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+
+    /* Cards */
+    body.light .card-border { background: #ffffff !important; }
+    body.light .card-border::before { background: linear-gradient(135deg, rgba(59,130,246,0.3), rgba(59,130,246,0.05), rgba(59,130,246,0.2)); }
+    body.light .trust-badge { background: rgba(255,255,255,0.95); border-color: rgba(59,130,246,0.2); }
+    body.light .trust-badge p.text-white { color: #0d1426 !important; }
+
+    /* Lawyer card */
+    body.light .card-border.rounded-2xl { background: #e8edf5 !important; }
+
+    /* Offer box */
+    body.light .bg-ink-800 { background: #ffffff !important; }
+
+    /* Input */
+    body.light .input-field {
+      background: #f9fafb;
+      border-color: rgba(0,0,0,0.12);
+      color: #0d1426;
+    }
+    body.light .input-field::placeholder { color: #9ca3af; }
+    body.light .input-field:focus { border-color: rgba(59,130,246,0.5); }
+
+    /* Ghost button */
+    body.light .btn-ghost { color: #374151; border-color: rgba(0,0,0,0.15); }
+    body.light .btn-ghost:hover { color: #0d1426; border-color: rgba(59,130,246,0.4); background: rgba(59,130,246,0.06); }
+
+    /* Stats bar */
+    body.light .trust-number { color: #0d1426; }
+    body.light [data-count] { color: #0d1426; }
+
+    /* Divider */
+    body.light .divider { background: linear-gradient(90deg, transparent, rgba(0,0,0,0.1), transparent); }
+
+    /* Footer */
+    body.light footer { border-top-color: rgba(0,0,0,0.08); }
+    body.light footer span, body.light footer p { color: #6b7280; }
+
+    /* Pill */
+    body.light .pill { background: rgba(59,130,246,0.1); }
+    body.light .pill-red { background: rgba(239,68,68,0.1); }
+
+    /* Theme toggle button */
+    #theme-toggle {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 9999;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(13,20,38,0.85);
+      backdrop-filter: blur(16px);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s cubic-bezier(0.16,1,0.3,1);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+    #theme-toggle:hover {
+      transform: scale(1.1);
+      border-color: rgba(59,130,246,0.4);
+      box-shadow: 0 4px 24px rgba(59,130,246,0.3);
+    }
+    body.light #theme-toggle {
+      background: rgba(255,255,255,0.9);
+      border-color: rgba(0,0,0,0.12);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+    }
+    .icon-moon, .icon-sun { transition: opacity 0.2s, transform 0.3s; position: absolute; }
+    .icon-sun { opacity: 0; transform: rotate(90deg) scale(0.7); }
+    body.light .icon-moon { opacity: 0; transform: rotate(-90deg) scale(0.7); }
+    body.light .icon-sun { opacity: 1; transform: rotate(0deg) scale(1); }
+  </style>
+</head>
+
+<body class="noise">
+
+  <!-- ═══════════════════════════════════════════════
+       TICKER BAR — Urgency / Social proof top bar
+  ═══════════════════════════════════════════════ -->
+  <div class="overflow-hidden bg-blue-600 py-2.5">
+    <div class="ticker-inner gap-12 text-white text-xs font-semibold tracking-widest uppercase">
+      <!-- duplicado para loop infinito -->
+      <span class="px-8">✦ Consulta gratuita &nbsp;·&nbsp; Sin compromiso</span>
+      <span class="px-8">✦ Precio cerrado desde el primer día</span>
+      <span class="px-8">✦ Solo si podemos garantizar el 100% de éxito</span>
+      <span class="px-8">✦ Si no lo conseguimos, no cobramos</span>
+      <span class="px-8">✦ Consulta gratuita &nbsp;·&nbsp; Sin compromiso</span>
+      <span class="px-8">✦ Precio cerrado desde el primer día</span>
+      <span class="px-8">✦ Solo si podemos garantizar el 100% de éxito</span>
+      <span class="px-8">✦ Si no lo conseguimos, no cobramos</span>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════
+       NAV
+  ═══════════════════════════════════════════════ -->
+  <nav id="navbar" class="fixed top-8 left-0 right-0 z-50 transition-all duration-500">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="flex items-center justify-between h-16 nav-glass rounded-xl px-6">
+        <!-- Logo -->
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center">
+            <span class="text-white font-black text-xs tracking-tight">L2</span>
+          </div>
+          <span class="font-700 text-sm text-white tracking-tight hidden sm:block">Ley <span class="text-blue-400">Segunda Oportunidad</span></span>
+        </div>
+        <!-- Nav links -->
+        <div class="hidden md:flex items-center gap-8 text-sm text-slate-400">
+          <a href="#como-funciona" class="hover:text-white transition-colors duration-200">Cómo funciona</a>
+          <a href="#garantia" class="hover:text-white transition-colors duration-200">Garantía</a>
+          <a href="#casos" class="hover:text-white transition-colors duration-200">Casos reales</a>
+          <a href="#faq" class="hover:text-white transition-colors duration-200">Preguntas</a>
+        </div>
+        <!-- CTA nav -->
+        <a href="#contacto" class="btn-primary text-sm py-3 px-5">
+          <span>Quiero mi estudio gratis</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════════════════════════════════
+       HERO
+  ═══════════════════════════════════════════════ -->
+  <section class="relative min-h-screen flex items-center pt-32 pb-20 overflow-hidden">
+
+    <!-- Background orbs -->
+    <div class="orb w-[600px] h-[600px] bg-blue-600/10 top-[-100px] left-[-200px]"></div>
+    <div class="orb w-[400px] h-[400px] bg-blue-500/8 bottom-[-50px] right-[-100px]"></div>
+    <div class="orb w-[300px] h-[300px] bg-blue-700/12 top-[40%] left-[30%]"></div>
+
+    <!-- Grid background -->
+    <div class="absolute inset-0 opacity-[0.025]" style="background-image: linear-gradient(rgba(59,130,246,1) 1px, transparent 1px), linear-gradient(90deg, rgba(59,130,246,1) 1px, transparent 1px); background-size: 60px 60px;"></div>
+
+    <div class="max-w-6xl mx-auto px-6 relative z-10 w-full">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+
+        <!-- Left: Copy -->
+        <div id="hero-copy">
+          <!-- Pill top tag -->
+          <div class="pill pill-red mb-6 hero-el">
+            <svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="#ef4444"><animate attributeName="opacity" values="1;0.3;1" dur="1.8s" repeatCount="indefinite"/></circle></svg>
+            Plazas limitadas este mes
+          </div>
+
+          <!-- Main headline: starts with emotional pain -->
+          <h1 class="text-4xl sm:text-5xl lg:text-[3.2rem] font-800 leading-[1.08] tracking-tight text-white mb-6 hero-el">
+            ¿Llevas meses sin coger el teléfono<br class="hidden sm:block" />
+            <span class="text-blue-gradient">porque sabes quién llama?</span>
+          </h1>
+
+          <!-- Sub: the truth pill -->
+          <p class="text-lg text-slate-300 leading-relaxed mb-4 hero-el">
+            Existe una ley que permite cancelar tus deudas legalmente, sin pagarlas. Pero <strong class="text-white">no todos los casos son viables</strong> — y muy pocos despachos te lo dirán antes de cobrarte.
+          </p>
+          <p class="text-base text-slate-400 leading-relaxed mb-10 hero-el">
+            Nosotros hacemos el estudio gratuito primero. <span class="text-white font-500">Solo trabajamos tu caso si podemos garantizarte el 100% de éxito.</span> Si no, te lo decimos y no te cobramos nada.
+          </p>
+
+          <!-- Offer box -->
+          <div class="card-border rounded-xl bg-ink-800 p-5 mb-8 hero-el">
+            <p class="text-xs text-blue-400 font-600 tracking-widest uppercase mb-3">Nuestra oferta</p>
+            <div class="space-y-2.5">
+              <div class="flex items-start gap-3">
+                <div class="w-5 h-5 rounded-full bg-blue-600/20 border border-blue-500/30 flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                </div>
+                <span class="text-sm text-slate-300"><strong class="text-white">Estudio de viabilidad gratuito</strong> — te decimos si tu caso tiene solución, sin compromiso</span>
+              </div>
+              <div class="flex items-start gap-3">
+                <div class="w-5 h-5 rounded-full bg-blue-600/20 border border-blue-500/30 flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                </div>
+                <span class="text-sm text-slate-300"><strong class="text-white">Precio cerrado desde el primer día</strong> — sin sorpresas ni costes ocultos al avanzar</span>
+              </div>
+              <div class="flex items-start gap-3">
+                <div class="w-5 h-5 rounded-full bg-blue-600/20 border border-blue-500/30 flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                </div>
+                <span class="text-sm text-slate-300"><strong class="text-white">Solo si es viable + garantía de resultado</strong> — si no lo conseguimos, no cobramos</span>
+              </div>
+              <div class="flex items-start gap-3">
+                <div class="w-5 h-5 rounded-full bg-blue-600/20 border border-blue-500/30 flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                </div>
+                <span class="text-sm text-slate-300"><strong class="text-white">Primer pago simbólico de inicio</strong> — solo cuando confirmamos que podemos ganar tu caso</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- CTA buttons -->
+          <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 hero-el">
+            <a href="#contacto" class="btn-primary text-base">
+              <span>Solicitar estudio gratuito</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href="tel:900000000" class="btn-ghost text-sm">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .84h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+              <span>Llamar gratis: 900 000 000</span>
+            </a>
+          </div>
+
+          <!-- Micro trust line -->
+          <p class="text-xs text-slate-500 mt-4 hero-el">Sin letra pequeña. Sin cuotas hasta confirmar viabilidad. Protegido por el Colegio de Abogados.</p>
+        </div>
+
+        <!-- Right: Lawyer + trust badges -->
+        <div class="relative hidden lg:block" id="hero-right">
+
+          <!-- Lawyer image card -->
+          <div class="relative rounded-2xl overflow-hidden h-[520px] card-border bg-ink-800">
+            <!-- Placeholder lawyer visual — swap src when real photo is ready -->
+            <div class="lawyer-avatar w-full h-full">
+              <div style="width:100%;height:100%;background:linear-gradient(160deg,#0d1426 0%,#1a2640 60%,#0d1426 100%);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;">
+                <!-- Silhouette SVG -->
+                <svg width="180" height="260" viewBox="0 0 180 260" fill="none" xmlns="http://www.w3.org/2000/svg" style="opacity:0.55">
+                  <ellipse cx="90" cy="68" rx="42" ry="46" fill="#1e3a5f"/>
+                  <path d="M10 260 C10 180 40 160 90 155 C140 160 170 180 170 260Z" fill="#1e3a5f"/>
+                </svg>
+                <p class="text-slate-600 text-xs tracking-widest uppercase absolute bottom-6">Foto del abogado aquí</p>
+              </div>
+            </div>
+            <!-- Gradient fade bottom -->
+            <div class="absolute bottom-0 left-0 right-0 h-32" style="background:linear-gradient(to top, #04070f, transparent)"></div>
+
+            <!-- Name + title overlay -->
+            <div class="absolute bottom-5 left-5 right-5">
+              <p class="text-white font-600 text-base">Carlos Martínez López</p>
+              <p class="text-slate-400 text-sm">Abogado especialista en L2O &nbsp;·&nbsp; Col. nº 12.345</p>
+            </div>
+          </div>
+
+          <!-- Floating trust badges -->
+          <div class="trust-badge absolute -left-8 top-16 float-a z-10" style="max-width:220px">
+            <div class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-full bg-green-500/15 border border-green-500/25 flex items-center justify-center flex-shrink-0">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
+              <div>
+                <p class="text-white font-600 text-sm">100% de éxito</p>
+                <p class="text-slate-400 text-xs">en casos aceptados</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="trust-badge absolute -right-6 top-[45%] float-b z-10" style="max-width:210px">
+            <div class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-full bg-blue-500/15 border border-blue-500/25 flex items-center justify-center flex-shrink-0">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              </div>
+              <div>
+                <p class="text-white font-600 text-sm">Precio cerrado</p>
+                <p class="text-slate-400 text-xs">sin sorpresas</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="trust-badge absolute -left-6 bottom-20 float-a z-10" style="max-width:200px; animation-delay: 1.2s">
+            <div class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-full bg-amber-500/15 border border-amber-500/25 flex items-center justify-center flex-shrink-0">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              </div>
+              <div>
+                <p class="text-white font-600 text-sm">Media: 14 meses</p>
+                <p class="text-slate-400 text-xs">hasta sentencia</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       STATS BAR
+  ═══════════════════════════════════════════════ -->
+  <div class="divider"></div>
+  <section class="py-14 relative" id="stats-bar">
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 reveal">
+        <div class="text-center">
+          <p class="text-3xl sm:text-4xl font-800 text-white tracking-tight" data-count="100">0<span class="text-blue-400">%</span></p>
+          <p class="text-slate-400 text-sm mt-1">Éxito en casos aceptados</p>
+        </div>
+        <div class="text-center">
+          <p class="text-3xl sm:text-4xl font-800 text-white tracking-tight"><span data-count="14">0</span><span class="text-blue-400"> m</span></p>
+          <p class="text-slate-400 text-sm mt-1">Media hasta sentencia</p>
+        </div>
+        <div class="text-center">
+          <p class="text-3xl sm:text-4xl font-800 text-white tracking-tight"><span class="text-blue-400">+</span><span data-count="500">0</span></p>
+          <p class="text-slate-400 text-sm mt-1">Familias sin deudas</p>
+        </div>
+        <div class="text-center">
+          <p class="text-3xl sm:text-4xl font-800 text-white tracking-tight"><span class="text-blue-400">€0</span></p>
+          <p class="text-slate-400 text-sm mt-1">Si no conseguimos resultado</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="divider"></div>
+
+  <!-- ═══════════════════════════════════════════════
+       PLACEHOLDERS (próximas secciones)
+  ═══════════════════════════════════════════════ -->
+  <!-- SECCIÓN: "¿Por qué nosotros y no el de €150/mes?" — próximamente -->
+  <!-- SECCIÓN: "Cómo funciona" — próximamente -->
+  <!-- SECCIÓN: "Garantía" — próximamente -->
+  <!-- SECCIÓN: "Casos reales" — próximamente -->
+  <!-- SECCIÓN: "FAQ" — próximamente -->
+  <!-- SECCIÓN: "Contacto / Formulario" — próximamente -->
+
+  <!-- ═══════════════════════════════════════════════
+       CONTACTO (formulario mínimo — visible desde ya)
+  ═══════════════════════════════════════════════ -->
+  <section class="py-24 relative" id="contacto">
+    <div class="orb w-[400px] h-[400px] bg-blue-600/8 top-0 left-1/2 -translate-x-1/2"></div>
+    <div class="max-w-xl mx-auto px-6 relative z-10">
+      <div class="text-center mb-10 reveal">
+        <div class="pill mb-4">Primer paso — gratis</div>
+        <h2 class="text-3xl sm:text-4xl font-800 text-white tracking-tight mb-4">
+          Solicita tu estudio<br /><span class="text-blue-gradient">de viabilidad gratuito</span>
+        </h2>
+        <p class="text-slate-400 text-base">En menos de 24 horas un abogado especialista revisa tu caso y te dice si tienes solución — sin compromiso y sin cobrarte nada.</p>
+      </div>
+
+      <div class="card-border rounded-2xl bg-ink-800 p-8 reveal">
+        <form id="lead-form" class="space-y-4">
+          <div>
+            <label class="text-sm text-slate-400 mb-2 block font-500">Nombre completo</label>
+            <input type="text" placeholder="Tu nombre" class="input-field" required />
+          </div>
+          <div>
+            <label class="text-sm text-slate-400 mb-2 block font-500">Teléfono</label>
+            <input type="tel" placeholder="+34 600 000 000" class="input-field" required />
+          </div>
+          <div>
+            <label class="text-sm text-slate-400 mb-2 block font-500">Deuda total aproximada</label>
+            <select class="input-field" style="cursor:pointer">
+              <option value="" disabled selected style="color:#4a5568">Selecciona un rango</option>
+              <option>Menos de 5.000 €</option>
+              <option>Entre 5.000 € y 20.000 €</option>
+              <option>Entre 20.000 € y 60.000 €</option>
+              <option>Más de 60.000 €</option>
+            </select>
+          </div>
+          <button type="submit" class="btn-primary w-full justify-center mt-2 text-base py-4">
+            <span>Quiero mi estudio gratuito</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+          <p class="text-center text-xs text-slate-500 mt-3">
+            Sin spam. Tus datos están protegidos según el RGPD.<br />
+            Solo te llamamos si tu caso tiene solución real.
+          </p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Theme toggle button -->
+  <button id="theme-toggle" title="Cambiar modo claro/oscuro">
+    <svg class="icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#93c5fd" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+    <svg class="icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1d4ed8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+  </button>
+
+  <!-- Footer mínimo -->
+  <footer class="py-8 border-t border-white/5">
+    <div class="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-2">
+        <div class="w-6 h-6 rounded bg-blue-600 flex items-center justify-center">
+          <span class="text-white font-black text-[9px]">L2</span>
+        </div>
+        <span class="text-slate-500 text-sm">Ley Segunda Oportunidad · Despacho especializado</span>
+      </div>
+      <p class="text-slate-600 text-xs">© 2026 · Todos los derechos reservados · Inscrito en el Colegio de Abogados</p>
+    </div>
+  </footer>
+
+  <!-- ═══════════════════════════════════════════════
+       SCRIPTS
+  ═══════════════════════════════════════════════ -->
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
+
+    // ── Nav shrink on scroll
+    ScrollTrigger.create({
+      start: 'top -80',
+      onEnter: () => {
+        document.getElementById('navbar').style.top = '0';
+        document.getElementById('navbar').querySelector('div > div').classList.add('rounded-none');
+        document.getElementById('navbar').querySelector('div > div').classList.remove('rounded-xl');
+      },
+      onLeaveBack: () => {
+        document.getElementById('navbar').style.top = '2rem';
+        document.getElementById('navbar').querySelector('div > div').classList.remove('rounded-none');
+        document.getElementById('navbar').querySelector('div > div').classList.add('rounded-xl');
+      }
+    });
+
+    // ── Hero entrance animation
+    const heroEls = document.querySelectorAll('.hero-el');
+    gsap.set(heroEls, { opacity: 0, y: 30 });
+    gsap.to(heroEls, {
+      opacity: 1, y: 0,
+      duration: 0.75,
+      stagger: 0.12,
+      ease: 'power3.out',
+      delay: 0.3
+    });
+
+    // Right side entrance
+    gsap.from('#hero-right', {
+      opacity: 0, x: 40, duration: 1,
+      ease: 'power3.out', delay: 0.5
+    });
+
+    // ── Scroll reveals
+    document.querySelectorAll('.reveal').forEach(el => {
+      gsap.to(el, {
+        scrollTrigger: { trigger: el, start: 'top 88%', toggleActions: 'play none none none' },
+        opacity: 1, y: 0,
+        duration: 0.75, ease: 'power3.out'
+      });
+    });
+
+    // ── Counter animation (stats bar)
+    document.querySelectorAll('[data-count]').forEach(el => {
+      const target = parseInt(el.dataset.count);
+      ScrollTrigger.create({
+        trigger: el,
+        start: 'top 90%',
+        once: true,
+        onEnter: () => {
+          gsap.to({ val: 0 }, {
+            val: target,
+            duration: 1.8,
+            ease: 'power2.out',
+            onUpdate: function() { el.textContent = Math.round(this.targets()[0].val); }
+          });
+        }
+      });
+    });
+
+    // ── Theme toggle
+    const toggle = document.getElementById('theme-toggle');
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'light') document.body.classList.add('light');
+    toggle.addEventListener('click', () => {
+      document.body.classList.toggle('light');
+      localStorage.setItem('theme', document.body.classList.contains('light') ? 'light' : 'dark');
+    });
+
+    // ── Form submit (placeholder)
+    document.getElementById('lead-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const btn = this.querySelector('button[type="submit"]');
+      btn.innerHTML = '<span>✓ Solicitud enviada — te llamamos en 24h</span>';
+      btn.style.background = 'linear-gradient(135deg, #22c55e, #16a34a)';
+      btn.style.animation = 'none';
+    });
+  </script>
+</body>
+</html>
