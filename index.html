@@ -26,12 +26,12 @@
               700: '#1d4ed8',
             },
             ink: {
-              950: '#04070f',
-              900: '#080c18',
-              800: '#0d1426',
-              700: '#131d35',
-              600: '#1a2640',
-              500: '#243352',
+              950: '#07101f',
+              900: '#0c172b',
+              800: '#122038',
+              700: '#192b4a',
+              600: '#20365c',
+              500: '#284568',
             }
           }
         }
@@ -44,7 +44,7 @@
     html { scroll-behavior: smooth; }
     body {
       font-family: 'Outfit', sans-serif;
-      background-color: #04070f;
+      background-color: #07101f;
       color: #eef0f5;
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
@@ -52,8 +52,8 @@
     ::selection { background: #3b82f620; color: #eef0f5; }
 
     ::-webkit-scrollbar { width: 4px; }
-    ::-webkit-scrollbar-track { background: #04070f; }
-    ::-webkit-scrollbar-thumb { background: #1a2640; border-radius: 2px; }
+    ::-webkit-scrollbar-track { background: #07101f; }
+    ::-webkit-scrollbar-thumb { background: #20365c; border-radius: 2px; }
 
     /* Blue gradient text */
     .text-blue-gradient {
@@ -84,7 +84,7 @@
 
     /* Nav glass */
     .nav-glass {
-      background: rgba(4,7,15,0.75);
+      background: rgba(7,16,31,0.75);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
       border-bottom: 1px solid rgba(255,255,255,0.05);
@@ -214,7 +214,7 @@
     .lawyer-avatar {
       width: 100%;
       height: 100%;
-      background: linear-gradient(160deg, #0d1426 0%, #131d35 60%, #1a2640 100%);
+      background: linear-gradient(160deg, #122038 0%, #192b4a 60%, #20365c 100%);
       display: flex;
       align-items: flex-end;
       justify-content: center;
@@ -223,7 +223,7 @@
     .lawyer-silhouette {
       width: 85%;
       height: 90%;
-      background: linear-gradient(180deg, #1e3a5f 0%, #243352 40%, #0d1426 100%);
+      background: linear-gradient(180deg, #1e3a5f 0%, #284568 40%, #122038 100%);
       clip-path: polygon(50% 0%, 65% 8%, 75% 20%, 75% 45%, 90% 55%, 100% 100%, 0% 100%, 10% 55%, 25% 45%, 25% 20%, 35% 8%);
       position: relative;
     }
@@ -240,7 +240,7 @@
 
     /* Trust badge */
     .trust-badge {
-      background: rgba(13,20,38,0.9);
+      background: rgba(18,32,56,0.9);
       border: 1px solid rgba(59,130,246,0.18);
       border-radius: 12px;
       backdrop-filter: blur(16px);
@@ -268,8 +268,8 @@
       z-index: 2;
       pointer-events: none;
     }
-    .testimonials-marquee-wrap::before { left: 0; background: linear-gradient(to right, #04070f, transparent); }
-    .testimonials-marquee-wrap::after  { right: 0; background: linear-gradient(to left, #04070f, transparent); }
+    .testimonials-marquee-wrap::before { left: 0; background: linear-gradient(to right, #07101f, transparent); }
+    .testimonials-marquee-wrap::after  { right: 0; background: linear-gradient(to left, #07101f, transparent); }
 
     .marquee-row { overflow: hidden; }
     .marquee-track {
@@ -293,7 +293,7 @@
       flex-shrink: 0;
     }
     .tcard-inner {
-      background: rgba(13,20,38,0.85);
+      background: rgba(18,32,56,0.85);
       border: 1px solid rgba(59,130,246,0.14);
       border-radius: 16px;
       padding: 20px;
@@ -326,14 +326,14 @@
     .tc-lawyer { color: #3b82f6; font-size: 11px; font-weight: 500; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 10px; }
 
     /* ── Cómo funciona — section bg ── */
-    .cf-section { background: #04070f; }
+    .cf-section { background: #07101f; }
     body.light .cf-section { background: #f0f4ff; }
     body.light .cf-sticky { background: transparent; }
 
     /* Apple visual card system */
     .av-card {
       height: 100%;
-      background: rgba(13,20,38,0.85);
+      background: rgba(18,32,56,0.85);
       border: 1px solid rgba(59,130,246,0.2);
       border-radius: 20px;
       padding: 28px;
@@ -381,12 +381,12 @@
     .av-text-body   { color: #cbd5e1; font-size: 13px; }
     body.light .av-text-body { color: #374151; }
     .av-text-strong { color: #fff; font-weight: 700; font-size: 13px; }
-    body.light .av-text-strong { color: #0d1426; }
+    body.light .av-text-strong { color: #122038; }
     .av-text-green  { color: #4ade80; font-weight: 700; font-size: 13px; }
     body.light .av-text-green { color: #16a34a; }
 
     /* Apple step text tokens */
-    body.light .apple-step h3 { color: #0d1426 !important; }
+    body.light .apple-step h3 { color: #122038 !important; }
     body.light .apple-step p  { color: #374151 !important; }
     body.light .apple-step p[style*="color:#60a5fa"] { color: #1d4ed8 !important; }
 
@@ -410,7 +410,7 @@
     /* Input */
     .input-field {
       width: 100%;
-      background: rgba(13,20,38,0.8);
+      background: rgba(18,32,56,0.8);
       border: 1px solid rgba(255,255,255,0.1);
       border-radius: 8px;
       padding: 15px 18px;
@@ -466,7 +466,7 @@
     }
     .dolor-p strong { color: #e2e8f0; font-weight: 600; }
     body.light .dolor-p { color: #374151; }
-    body.light .dolor-p strong { color: #0d1426; }
+    body.light .dolor-p strong { color: #122038; }
 
     .dolor-divider {
       width: 40px;
@@ -478,7 +478,7 @@
     /* ── LIGHT MODE ── */
     body.light {
       background-color: #f4f6fb;
-      color: #0d1426;
+      color: #122038;
     }
     body.light .noise::after { opacity: 0.08; }
     body.light .nav-glass {
@@ -486,8 +486,8 @@
       border-bottom: 1px solid rgba(0,0,0,0.07);
     }
     body.light .nav-glass a { color: #374151; }
-    body.light .nav-glass a:hover { color: #0d1426; }
-    body.light .nav-glass span { color: #0d1426; }
+    body.light .nav-glass a:hover { color: #122038; }
+    body.light .nav-glass span { color: #122038; }
 
     /* Hero backgrounds */
     body.light section { background: transparent; }
@@ -502,15 +502,15 @@
     body.light .text-slate-400 { color: #4b5563 !important; }
     body.light .text-slate-500 { color: #6b7280 !important; }
     body.light .text-slate-600 { color: #6b7280 !important; }
-    body.light strong.text-white, body.light .text-white { color: #0d1426 !important; }
-    body.light h1, body.light h2, body.light h3 { color: #0d1426; }
+    body.light strong.text-white, body.light .text-white { color: #122038 !important; }
+    body.light h1, body.light h2, body.light h3 { color: #122038; }
     body.light .text-blue-gradient { background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 60%, #3b82f6 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
 
     /* Cards */
     body.light .card-border { background: #ffffff !important; }
     body.light .card-border::before { background: linear-gradient(135deg, rgba(59,130,246,0.3), rgba(59,130,246,0.05), rgba(59,130,246,0.2)); }
     body.light .trust-badge { background: rgba(255,255,255,0.95); border-color: rgba(59,130,246,0.2); }
-    body.light .trust-badge p.text-white { color: #0d1426 !important; }
+    body.light .trust-badge p.text-white { color: #122038 !important; }
 
     /* Lawyer card */
     body.light .card-border.rounded-2xl { background: #e8edf5 !important; }
@@ -522,18 +522,18 @@
     body.light .input-field {
       background: #f9fafb;
       border-color: rgba(0,0,0,0.12);
-      color: #0d1426;
+      color: #122038;
     }
     body.light .input-field::placeholder { color: #9ca3af; }
     body.light .input-field:focus { border-color: rgba(59,130,246,0.5); }
 
     /* Ghost button */
     body.light .btn-ghost { color: #374151; border-color: rgba(0,0,0,0.15); }
-    body.light .btn-ghost:hover { color: #0d1426; border-color: rgba(59,130,246,0.4); background: rgba(59,130,246,0.06); }
+    body.light .btn-ghost:hover { color: #122038; border-color: rgba(59,130,246,0.4); background: rgba(59,130,246,0.06); }
 
     /* Stats bar */
-    body.light .trust-number { color: #0d1426; }
-    body.light [data-count] { color: #0d1426; }
+    body.light .trust-number { color: #122038; }
+    body.light [data-count] { color: #122038; }
 
     /* Divider */
     body.light .divider { background: linear-gradient(90deg, transparent, rgba(0,0,0,0.1), transparent); }
@@ -556,7 +556,7 @@
       height: 48px;
       border-radius: 50%;
       border: 1px solid rgba(255,255,255,0.12);
-      background: rgba(13,20,38,0.85);
+      background: rgba(18,32,56,0.85);
       backdrop-filter: blur(16px);
       cursor: pointer;
       display: flex;
@@ -588,7 +588,7 @@
     body.light #steps-sticky { background: transparent; }
 
     /* Apple step text */
-    body.light .apple-step h3 { color: #0d1426 !important; }
+    body.light .apple-step h3 { color: #122038 !important; }
     body.light .apple-step p  { color: #374151 !important; }
 
     /* Apple visual cards */
@@ -601,7 +601,7 @@
     body.light .apple-visual p[style*="color:#94a3b8"],
     body.light .apple-visual p[style*="color:#64748b"] { color: #374151 !important; }
     body.light .apple-visual p[style*="color:#fff"],
-    body.light .apple-visual span[style*="color:#fff"] { color: #0d1426 !important; }
+    body.light .apple-visual span[style*="color:#fff"] { color: #122038 !important; }
     body.light .apple-visual p[style*="color:#4ade80"],
     body.light .apple-visual span[style*="color:#4ade80"] { color: #16a34a !important; }
     body.light .apple-visual p[style*="color:#93c5fd"],
@@ -628,7 +628,7 @@
     }
     body.light #garantia p[style*="color:#94a3b8"],
     body.light #garantia p[style*="color:#64748b"] { color: #374151 !important; }
-    body.light #garantia p[style*="color:#fff"] { color: #0d1426 !important; }
+    body.light #garantia p[style*="color:#fff"] { color: #122038 !important; }
     body.light #garantia p[style*="color:#4ade80"] { color: #16a34a !important; }
     body.light #garantia span[style*="color:#ef4444"] { color: #dc2626 !important; }
     body.light #garantia span[style*="color:#4ade80"] { color: #16a34a !important; }
@@ -646,7 +646,7 @@
       border-color: rgba(59,130,246,0.15) !important;
     }
     body.light .tcard:hover .tcard-inner { border-color: rgba(59,130,246,0.4) !important; }
-    body.light .tc-name   { color: #0d1426 !important; }
+    body.light .tc-name   { color: #122038 !important; }
     body.light .tc-sub    { color: #6b7280 !important; }
     body.light .tc-text   { color: #374151 !important; }
     body.light .tc-amount { color: #16a34a !important; }
@@ -663,7 +663,7 @@
       border-color: rgba(59,130,246,0.12) !important;
     }
     body.light #hero-right p[style*="color:#fff"],
-    body.light #hero-right p[style*="color:#white"] { color: #0d1426 !important; }
+    body.light #hero-right p[style*="color:#white"] { color: #122038 !important; }
     body.light #hero-right p[style*="color:#94a3b8"] { color: #374151 !important; }
     body.light #hero-right p[style*="color:#93c5fd"] { color: #1d4ed8 !important; }
     body.light #hero-right p[style*="color:#d8b4fe"] { color: #7c3aed !important; }
@@ -677,7 +677,7 @@
 
     /* FAQ */
     body.light .faq-item { background: #ffffff !important; border-color: rgba(59,130,246,0.15) !important; }
-    body.light .faq-btn span { color: #0d1426 !important; }
+    body.light .faq-btn span { color: #122038 !important; }
     body.light .faq-body p   { color: #374151 !important; }
 
     /* Cómo funciona — mobile cards */
@@ -688,7 +688,7 @@
 
     /* Stats bar */
     body.light #stats-bar { background: transparent; }
-    body.light #stats-bar p { color: #0d1426 !important; }
+    body.light #stats-bar p { color: #122038 !important; }
     .icon-moon, .icon-sun { transition: opacity 0.2s, transform 0.3s; position: absolute; }
     .icon-sun { opacity: 0; transform: rotate(90deg) scale(0.7); }
     body.light .icon-moon { opacity: 0; transform: rotate(-90deg) scale(0.7); }
@@ -838,7 +838,7 @@
             <!-- Lawyer photo background -->
             <img src="recursos/imageabogado main.png" alt="Abogado especialista" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;">
             <!-- Dark overlay so text is readable -->
-            <div style="position:absolute;inset:0;background:linear-gradient(160deg,rgba(4,7,15,0.55) 0%,rgba(4,7,15,0.3) 40%,rgba(4,7,15,0.75) 100%);"></div>
+            <div style="position:absolute;inset:0;background:linear-gradient(160deg,rgba(7,16,31,0.55) 0%,rgba(7,16,31,0.3) 40%,rgba(7,16,31,0.75) 100%);"></div>
 
           </div>
 
@@ -1124,7 +1124,7 @@
       </div>
 
       <!-- Main guarantee card -->
-      <div class="reveal card-border rounded-2xl p-8 mb-8 relative overflow-hidden" style="background:linear-gradient(135deg,rgba(13,20,38,0.95),rgba(26,38,64,0.95))">
+      <div class="reveal card-border rounded-2xl p-8 mb-8 relative overflow-hidden" style="background:linear-gradient(135deg,rgba(18,32,56,0.95),rgba(32,54,92,0.95))">
         <div class="absolute top-0 right-0 w-48 h-48 opacity-5" style="background:radial-gradient(circle,#3b82f6,transparent 70%)"></div>
         <div class="grid md:grid-cols-2 gap-8 items-start">
           <div>
