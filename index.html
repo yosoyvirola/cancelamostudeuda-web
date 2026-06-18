@@ -1520,11 +1520,48 @@
         <div class="w-6 h-6 rounded bg-blue-600 flex items-center justify-center">
           <span class="text-white font-black text-[9px]">L2</span>
         </div>
-        <span class="text-slate-500 text-sm">Ley Segunda Oportunidad · Despacho especializado</span>
+        <span class="text-slate-500 text-sm">Ley Segunda Oportunidad · Por <a href="https://hpmcapital.es/ley-de-segunda-oportunidad/" target="_blank" rel="noopener" class="text-blue-400 hover:text-blue-300 transition-colors">HPM Capital</a></span>
       </div>
-      <p class="text-slate-600 text-xs">© 2026 · Todos los derechos reservados · Inscrito en el Colegio de Abogados</p>
+      <div class="flex items-center gap-4">
+        <p class="text-slate-600 text-xs">© 2026 · HPM Capital · Todos los derechos reservados</p>
+        <button onclick="document.getElementById('modal-privacidad').classList.remove('hidden')" class="text-slate-600 text-xs hover:text-slate-400 transition-colors underline underline-offset-2">Política de privacidad</button>
+      </div>
     </div>
   </footer>
+
+  <!-- Modal Política de Privacidad -->
+  <div id="modal-privacidad" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4" style="background:rgba(0,0,0,0.7);backdrop-filter:blur(4px);">
+    <div class="relative max-w-lg w-full rounded-2xl p-8 overflow-y-auto max-h-[80vh]" style="background:#122038;border:1px solid rgba(59,130,246,0.2);">
+      <button onclick="document.getElementById('modal-privacidad').classList.add('hidden')" class="absolute top-4 right-4 text-slate-400 hover:text-white transition-colors">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+      <h2 class="text-white font-700 text-lg mb-1">Política de Privacidad</h2>
+      <p class="text-blue-400 text-sm mb-6">cancelamostudeuda.io</p>
+
+      <div class="space-y-4 text-slate-400 text-sm leading-relaxed">
+        <div>
+          <p class="text-white font-600 mb-1">Responsable del tratamiento</p>
+          <p><a href="https://hpmcapital.es/ley-de-segunda-oportunidad/" target="_blank" rel="noopener" class="text-blue-400 hover:text-blue-300">HPM Capital</a> — despacho jurídico especializado en Ley de Segunda Oportunidad. cancelamostudeuda.io es un servicio operado por HPM Capital.</p>
+        </div>
+        <div>
+          <p class="text-white font-600 mb-1">Finalidad</p>
+          <p>Los datos que nos facilitas a través del formulario de contacto se utilizan exclusivamente para estudiar la viabilidad de tu caso y ponernos en contacto contigo. No cedemos tus datos a terceros.</p>
+        </div>
+        <div>
+          <p class="text-white font-600 mb-1">Base legal</p>
+          <p>Tu consentimiento expreso al enviar el formulario (art. 6.1.a RGPD).</p>
+        </div>
+        <div>
+          <p class="text-white font-600 mb-1">Conservación</p>
+          <p>Conservamos tus datos mientras exista una relación activa contigo o hasta que solicites su supresión.</p>
+        </div>
+        <div>
+          <p class="text-white font-600 mb-1">Tus derechos</p>
+          <p>Puedes ejercer tus derechos de acceso, rectificación, supresión y portabilidad contactando con nosotros a través de <a href="https://hpmcapital.es/ley-de-segunda-oportunidad/" target="_blank" rel="noopener" class="text-blue-400 hover:text-blue-300">hpmcapital.es</a>.</p>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- ═══════════════════════════════════════════════
        SCRIPTS
