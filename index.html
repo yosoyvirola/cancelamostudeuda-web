@@ -407,35 +407,6 @@
     .faq-body { transition: none; }
     .faq-icon.open { transform: rotate(180deg); }
 
-    /* Client slider */
-    .client-slide {
-      opacity: 0;
-      transform: translateY(18px);
-      transition: opacity 0.55s cubic-bezier(.4,0,.2,1), transform 0.55s cubic-bezier(.4,0,.2,1);
-      pointer-events: none;
-    }
-    .client-slide.active {
-      opacity: 1;
-      transform: translateY(0);
-      pointer-events: auto;
-    }
-    .client-slide.exit {
-      opacity: 0;
-      transform: translateY(-18px);
-      transition: opacity 0.4s cubic-bezier(.4,0,.2,1), transform 0.4s cubic-bezier(.4,0,.2,1);
-    }
-    .dot {
-      width: 6px; height: 6px; border-radius: 50%;
-      background: rgba(255,255,255,0.2);
-      transition: background 0.3s, width 0.3s;
-      cursor: pointer;
-    }
-    .dot.active {
-      background: #3b82f6;
-      width: 18px;
-      border-radius: 3px;
-    }
-
     /* Input */
     .input-field {
       width: 100%;
@@ -683,7 +654,6 @@
     body.light .tc-lawyer { color: #2563eb !important; border-top-color: rgba(0,0,0,0.07) !important; }
 
     /* Lawyer hero slider */
-    body.light #client-slider > div { background: transparent; }
     body.light #hero-right .card-border {
       background: #f0f4ff !important;
       border-color: rgba(59,130,246,0.2) !important;
@@ -870,138 +840,6 @@
             <!-- Dark overlay so text is readable -->
             <div style="position:absolute;inset:0;background:linear-gradient(160deg,rgba(4,7,15,0.55) 0%,rgba(4,7,15,0.3) 40%,rgba(4,7,15,0.75) 100%);"></div>
 
-            <!-- LAWYER SLIDER — rotates every 3s showing lawyer + their resolved cases -->
-            <div id="client-slider" class="absolute inset-0" style="padding-bottom:88px;overflow:hidden;">
-
-              <!-- LAWYER SLIDE 1: Carlos Martínez -->
-              <div class="client-slide active" data-index="0" style="position:absolute;inset:0;padding:24px 22px 0;display:flex;flex-direction:column;gap:12px;">
-                <!-- Lawyer header -->
-                <div style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:rgba(59,130,246,0.1);border:1px solid rgba(59,130,246,0.25);border-radius:14px;">
-                  <div style="width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#1e3a5f,#2d5a8e);display:flex;align-items:center;justify-content:center;flex-shrink:0;border:2px solid rgba(59,130,246,0.4);">
-                    <svg width="24" height="32" viewBox="0 0 180 260" fill="none"><ellipse cx="90" cy="68" rx="42" ry="46" fill="#3b82f6" opacity="0.9"/><path d="M10 260 C10 180 40 160 90 155 C140 160 170 180 170 260Z" fill="#3b82f6" opacity="0.9"/></svg>
-                  </div>
-                  <div>
-                    <p style="color:#fff;font-weight:700;font-size:14px;line-height:1.2;">Carlos Martínez López</p>
-                    <p style="color:#93c5fd;font-size:11px;">Abogado especialista L2O · Col. nº 12.345</p>
-                  </div>
-                  <div style="margin-left:auto;background:rgba(34,197,94,0.15);border:1px solid rgba(34,197,94,0.3);border-radius:8px;padding:4px 10px;">
-                    <p style="color:#4ade80;font-size:10px;font-weight:700;">23 casos</p>
-                  </div>
-                </div>
-                <!-- Cases -->
-                <div style="display:flex;flex-direction:column;gap:8px;">
-                  <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:11px 14px;">
-                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
-                      <p style="color:#fff;font-size:13px;font-weight:600;">Rafael G. · Empresario, Madrid</p>
-                      <span style="color:#4ade80;font-size:12px;font-weight:700;">€47.000 ✓</span>
-                    </div>
-                    <p style="color:#94a3b8;font-size:12px;line-height:1.5;">"En 11 meses sin pagar nada más. No me lo creía hasta que firmé la sentencia."</p>
-                  </div>
-                  <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:11px 14px;">
-                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
-                      <p style="color:#fff;font-size:13px;font-weight:600;">Laura M. · Comerciante, Barcelona</p>
-                      <span style="color:#4ade80;font-size:12px;font-weight:700;">€28.000 ✓</span>
-                    </div>
-                    <p style="color:#94a3b8;font-size:12px;line-height:1.5;">"Precio cerrado desde el primer día. Sin sorpresas. Justo lo que prometieron."</p>
-                  </div>
-                  <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:11px 14px;">
-                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
-                      <p style="color:#fff;font-size:13px;font-weight:600;">Pedro A. · Transportista, Zaragoza</p>
-                      <span style="color:#4ade80;font-size:12px;font-weight:700;">€19.500 ✓</span>
-                    </div>
-                    <p style="color:#94a3b8;font-size:12px;line-height:1.5;">"Carlos llevó todo. Yo solo firmé cuando tocaba. Deuda cancelada al 100%."</p>
-                  </div>
-                </div>
-              </div>
-
-              <!-- LAWYER SLIDE 2: Ana Rodríguez -->
-              <div class="client-slide" data-index="1" style="position:absolute;inset:0;padding:24px 22px 0;display:flex;flex-direction:column;gap:12px;">
-                <div style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:rgba(168,85,247,0.1);border:1px solid rgba(168,85,247,0.25);border-radius:14px;">
-                  <div style="width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#2a1a3a,#5a2d8e);display:flex;align-items:center;justify-content:center;flex-shrink:0;border:2px solid rgba(168,85,247,0.4);">
-                    <svg width="24" height="32" viewBox="0 0 180 260" fill="none"><ellipse cx="90" cy="68" rx="38" ry="42" fill="#a855f7" opacity="0.9"/><path d="M10 260 C10 180 40 160 90 155 C140 160 170 180 170 260Z" fill="#a855f7" opacity="0.9"/></svg>
-                  </div>
-                  <div>
-                    <p style="color:#fff;font-weight:700;font-size:14px;line-height:1.2;">Ana Rodríguez Vega</p>
-                    <p style="color:#d8b4fe;font-size:11px;">Abogada especialista L2O · Col. nº 8.901</p>
-                  </div>
-                  <div style="margin-left:auto;background:rgba(34,197,94,0.15);border:1px solid rgba(34,197,94,0.3);border-radius:8px;padding:4px 10px;">
-                    <p style="color:#4ade80;font-size:10px;font-weight:700;">31 casos</p>
-                  </div>
-                </div>
-                <div style="display:flex;flex-direction:column;gap:8px;">
-                  <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:11px 14px;">
-                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
-                      <p style="color:#fff;font-size:13px;font-weight:600;">Carmen V. · Autónoma, Valencia</p>
-                      <span style="color:#4ade80;font-size:12px;font-weight:700;">€31.000 ✓</span>
-                    </div>
-                    <p style="color:#94a3b8;font-size:12px;line-height:1.5;">"Deudas con tres bancos distintos. Ana lo resolvió todo. Caso cerrado en 13 meses."</p>
-                  </div>
-                  <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:11px 14px;">
-                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
-                      <p style="color:#fff;font-size:13px;font-weight:600;">Marcos T. · Empleado, Sevilla</p>
-                      <span style="color:#4ade80;font-size:12px;font-weight:700;">€62.000 ✓</span>
-                    </div>
-                    <p style="color:#94a3b8;font-size:12px;line-height:1.5;">"Me avisaron desde el principio que lo ganarían. Tenían razón. €62k cancelados."</p>
-                  </div>
-                  <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:11px 14px;">
-                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
-                      <p style="color:#fff;font-size:13px;font-weight:600;">Rosa F. · Ama de casa, Málaga</p>
-                      <span style="color:#4ade80;font-size:12px;font-weight:700;">€24.000 ✓</span>
-                    </div>
-                    <p style="color:#94a3b8;font-size:12px;line-height:1.5;">"Nunca pensé que alguien me ayudaría de verdad. Ana me devolvió la tranquilidad."</p>
-                  </div>
-                </div>
-              </div>
-
-              <!-- LAWYER SLIDE 3: Ricardo Pérez -->
-              <div class="client-slide" data-index="2" style="position:absolute;inset:0;padding:24px 22px 0;display:flex;flex-direction:column;gap:12px;">
-                <div style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.25);border-radius:14px;">
-                  <div style="width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#1a3a2a,#2d6e4e);display:flex;align-items:center;justify-content:center;flex-shrink:0;border:2px solid rgba(34,197,94,0.4);">
-                    <svg width="24" height="32" viewBox="0 0 180 260" fill="none"><ellipse cx="90" cy="68" rx="42" ry="46" fill="#22c55e" opacity="0.9"/><path d="M10 260 C10 180 40 160 90 155 C140 160 170 180 170 260Z" fill="#22c55e" opacity="0.9"/></svg>
-                  </div>
-                  <div>
-                    <p style="color:#fff;font-weight:700;font-size:14px;line-height:1.2;">Ricardo Pérez Montoya</p>
-                    <p style="color:#86efac;font-size:11px;">Abogado especialista L2O · Col. nº 6.234</p>
-                  </div>
-                  <div style="margin-left:auto;background:rgba(34,197,94,0.15);border:1px solid rgba(34,197,94,0.3);border-radius:8px;padding:4px 10px;">
-                    <p style="color:#4ade80;font-size:10px;font-weight:700;">18 casos</p>
-                  </div>
-                </div>
-                <div style="display:flex;flex-direction:column;gap:8px;">
-                  <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:11px 14px;">
-                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
-                      <p style="color:#fff;font-size:13px;font-weight:600;">Javier O. · Constructor, Bilbao</p>
-                      <span style="color:#4ade80;font-size:12px;font-weight:700;">€83.000 ✓</span>
-                    </div>
-                    <p style="color:#94a3b8;font-size:12px;line-height:1.5;">"La empresa quebró y me quedé con todo encima. Ricardo lo limpió todo en 16 meses."</p>
-                  </div>
-                  <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:11px 14px;">
-                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
-                      <p style="color:#fff;font-size:13px;font-weight:600;">Silvia R. · Diseñadora, Madrid</p>
-                      <span style="color:#4ade80;font-size:12px;font-weight:700;">€15.200 ✓</span>
-                    </div>
-                    <p style="color:#94a3b8;font-size:12px;line-height:1.5;">"Tenía miedo de que no funcionara. Ricardo me explicó todo paso a paso. Funcionó."</p>
-                  </div>
-                  <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:11px 14px;">
-                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
-                      <p style="color:#fff;font-size:13px;font-weight:600;">Antonio M. · Hostelero, Alicante</p>
-                      <span style="color:#4ade80;font-size:12px;font-weight:700;">€41.000 ✓</span>
-                    </div>
-                    <p style="color:#94a3b8;font-size:12px;line-height:1.5;">"El bar cerró por la pandemia. Las deudas se quedaron. Ahora ya no existen."</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Gradient fade bottom -->
-            <div class="absolute bottom-0 left-0 right-0 h-36" style="background:linear-gradient(to top, #04070f 60%, transparent)"></div>
-
-            <!-- Slider dots -->
-            <div id="slider-dots" class="absolute bottom-4 left-0 right-0 flex justify-center gap-2">
-              <span class="dot active" data-dot="0"></span>
-              <span class="dot" data-dot="1"></span>
-              <span class="dot" data-dot="2"></span>
-            </div>
           </div>
 
           <!-- Floating trust badges -->
@@ -1813,34 +1651,6 @@
     if (!isOpen) { body.classList.remove('hidden'); icon.classList.add('open'); }
   }
 
-  // Client slider
-  (function() {
-    const slides = document.querySelectorAll('.client-slide');
-    const dots = document.querySelectorAll('.dot');
-    let current = 0;
-    let timer;
-
-    function goTo(next) {
-      slides[current].classList.add('exit');
-      dots[current].classList.remove('active');
-      setTimeout(() => { slides[current].classList.remove('active','exit'); }, 420);
-      current = next;
-      slides[current].classList.add('active');
-      dots[current].classList.add('active');
-    }
-
-    function advance() { goTo((current + 1) % slides.length); }
-
-    timer = setInterval(advance, 3500);
-
-    dots.forEach(dot => {
-      dot.addEventListener('click', () => {
-        clearInterval(timer);
-        goTo(parseInt(dot.dataset.dot));
-        timer = setInterval(advance, 3500);
-      });
-    });
-  })();
   </script>
 </body>
 </html>
